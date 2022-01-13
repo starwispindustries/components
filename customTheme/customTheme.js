@@ -190,6 +190,11 @@ const theme = extendTheme({
           minWidth: '72px',
           fontSize: '14px',
           fontWeight: 'normal'
+        },
+        md: {
+          fontSize: '16px',
+          fontWeight: '500',
+          fontStyle: 'normal',
         }
       },
       // styles for different visual variants ("outline", "solid")
