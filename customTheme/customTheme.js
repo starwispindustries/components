@@ -4,7 +4,7 @@ import { mode, whiten, darken, createBreakpoints } from "@chakra-ui/theme-tools"
 
 const config = {
   initialColorMode: 'light',
-  useSystemColorMode: false,
+  useSystemColorMode: true,
 }
 
 const breakpoints = createBreakpoints({
