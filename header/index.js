@@ -1,5 +1,5 @@
 import { Flex, Icon, useColorModeValue } from "@chakra-ui/react"
-import { ChevronLeftIcon } from '@chakra-ui/Icons'
+import { ChevronLeftIcon } from '@chakra-ui/icons'
 
 const Header = (props) => {
     console.log(props)
