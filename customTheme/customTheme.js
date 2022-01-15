@@ -131,6 +131,9 @@ const theme = extendTheme({
           color: mode('text.light.subtext', 'text.dark.subtext')(props),
           fontSize: '12px'
         }),
+        h3: (props) => ({
+          color: mode('text.light.h3_captions', 'text.dark.h3_captions')(props)
+        }),
         h2: (props) => ({
           color: mode('text.light.h2', 'text.dark.h2')(props),
           fontSize: '14px',
@@ -310,7 +313,14 @@ const theme = extendTheme({
         size: '',
         variant: '',
       }, */
-    }
+    },
+  },
+  styles: {
+    global: (props) => ({
+      body: {
+        bg: mode('backgrounds.light.e200', 'backgrounds.dark.e200')(props),
+      }
+    })
   }
 })
 
