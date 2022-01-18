@@ -17,7 +17,7 @@ const Header = (props) => {
             {...props}
         >
             
-            <ChevronLeftIcon w="24px" h="24px" color={arrowColor} onClick={props.goback} focusable={true} borderRadius="50%"/>
+            <ChevronLeftIcon w="32px" h="32px" p={1} color={arrowColor} onClick={props.goback} focusable={true} borderRadius="50%"/>
             {props.children}
         </Flex>
     )
