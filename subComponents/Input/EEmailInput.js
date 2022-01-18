@@ -1,6 +1,6 @@
 import { AtSignIcon } from "@chakra-ui/icons";
 import React from "react";
-import EInput from "./EInputField";
+import EInput from "./EInput";
 
 const EEmailInput = ({
 	value,

@@ -1,5 +1,5 @@
 import React from "react";
-import EInput from "./EInputField";
+import EInput from "./EInput";
 
 const EPasswordInput = ({
 	value,
