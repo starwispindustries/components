@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Box, Select } from "@chakra-ui/react";
-import EInput from "./EInputField";
+import EInput from "./EInput";
 
 const ESelectInput = ({
 	value,
