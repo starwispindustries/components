@@ -6,7 +6,7 @@ const Header = ({ goback, children, ...props }) => {
 	const bg = useColorModeValue("primary.light._000", "primary.dark._000");
 	return (
 		<Flex
-			transition="0.5s opacity"
+			transition="opacity 0.5s"
 			as="nav"
 			h="63px"
 			p="0 15px"
