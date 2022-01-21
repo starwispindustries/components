@@ -89,7 +89,13 @@ const EInput = ({
 				e.preventDefault();
 				setPasswordVisible((visibility) => !visibility);
 			};
-			rightIcon = passwordVisible ? <ViewOffIcon /> : <ViewIcon />;
+			rightIcon = isDisabled ? (
+				""
+			) : passwordVisible ? (
+				<ViewOffIcon cursor={"pointer"} />
+			) : (
+				<ViewIcon cursor={"pointer"} />
+			);
 			break;
 
 		case "email":

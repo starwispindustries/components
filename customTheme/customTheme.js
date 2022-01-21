@@ -64,11 +64,13 @@ const theme = extendTheme({
 				e000: "#FFFFFF",
 				e100: "#F4F4F4",
 				e200: "#F7F7F7",
+				e300: "#EFEFEF",
 			},
 			dark: {
 				e000: "#000000",
 				e100: "#101010",
 				e200: "#202020",
+				e300: "#171717",
 			},
 		},
 		red: {
@@ -245,7 +247,7 @@ const theme = extendTheme({
 					_hover: {
 						bg: mode(
 							darken("primary.light._000", 20),
-							whiten("primary.dark._000", 20)
+							whiten("primary.dark._000", 30)
 						)(props),
 					},
 				}),
