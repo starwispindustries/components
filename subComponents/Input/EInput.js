@@ -128,7 +128,7 @@ const EInput = ({
 				<FormLabel
 					position={"absolute"}
 					top={"-8px"}
-					right={"12px"}
+					right={"22px"}
 					display={"block"}
 					fontSize={"12px"}
 					fontWeight={500}
@@ -248,7 +248,9 @@ const EInput = ({
 			</InputGroup>
 			{error && (
 				<Text
-					mt={"10px"}
+				position={"absolute"}
+					mt={"2px"}
+					ml={"16px"}
 					fontSize={"14px"}
 					lineHeight={"17px"}
 					fontWeight={"300"}
