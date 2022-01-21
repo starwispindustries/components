@@ -10,7 +10,7 @@ import {
 	Textarea,
 	useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const EInput = ({
 	type,
@@ -19,6 +19,8 @@ const EInput = ({
 	label = name,
 	value,
 	onChange,
+	onFocus,
+	onBlur,
 	placeholder = label,
 	leftIcon,
 	rightIcon,
@@ -67,11 +69,16 @@ const EInput = ({
 		"text.dark.subtext"
 	);
 
+	const [isFocused, setIsFocused] = useState(value);
+
+	useEffect(() => {
+		setIsFocused(value);
+	}, [value]);
+
 	const [passwordVisible, setPasswordVisible] = useState(false);
 	let handleToggle = (e) => {
 		e.preventDefault();
 	};
-	let inputElement = null;
 	switch (type) {
 		case "text":
 			inputMode = inputMode || "text";
@@ -96,12 +103,6 @@ const EInput = ({
 		case "url":
 			inputMode = inputMode || "url";
 			break;
-
-		case "textarea":
-			break;
-		default:
-			inputElement = <Input name={name} {...rest} />;
-			break;
 	}
 
 	return (
@@ -109,17 +110,19 @@ const EInput = ({
 			{label && (
 				<FormLabel
 					position={"absolute"}
-					top={"-8px"}
-					left={"12px"}
+					top={isFocused ? "-8px" : "14px"}
+					left={isFocused ? "13px" : leftIcon ? "42px" : "10px"}
 					display={"block"}
-					fontSize={"12px"}
+					fontSize={isFocused ? "12px" : "16px"}
 					fontWeight={500}
 					color={labelColor}
 					borderRadius={"5px"}
+					pointerEvents={"none"}
 					mr={"auto"}
 					px={"7px"}
 					bg={labelBGColor}
 					zIndex={2}
+					transition={"all 0.15s ease-in-out"}
 				>
 					{label}
 				</FormLabel>
@@ -194,9 +197,17 @@ const EInput = ({
 							isDisabled={isDisabled}
 							isInvalid={isInvalid || error}
 							isRequired={isRequired}
-							placeholder={placeholder}
+							placeholder={""}
 							value={value}
 							onChange={onChange}
+							onFocus={(e) => {
+								setIsFocused(true);
+								onFocus && onFocus(e);
+							}}
+							onBlur={(e) => {
+								setIsFocused(value || false);
+								onBlur && onBlur(e);
+							}}
 							{...rest}
 						></Textarea>
 					</Box>
@@ -230,9 +241,17 @@ const EInput = ({
 						isDisabled={isDisabled}
 						isInvalid={isInvalid || error}
 						isRequired={isRequired}
-						placeholder={placeholder}
+						placeholder={""}
 						value={value}
 						onChange={onChange}
+						onFocus={(e) => {
+							setIsFocused(true);
+							onFocus && onFocus(e);
+						}}
+						onBlur={(e) => {
+							setIsFocused(value || false);
+							onBlur && onBlur(e);
+						}}
 						{...rest}
 					/>
 				)}
@@ -248,7 +267,7 @@ const EInput = ({
 			</InputGroup>
 			{error && (
 				<Text
-				position={"absolute"}
+					position={"absolute"}
 					mt={"2px"}
 					ml={"16px"}
 					fontSize={"14px"}
