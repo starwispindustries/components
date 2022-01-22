@@ -71,14 +71,11 @@ const EInput = ({
 
 	const [isFocused, setIsFocused] = useState(value);
 
-	useEffect(() => {
-		setIsFocused(value);
-	}, [value]);
-
 	const [passwordVisible, setPasswordVisible] = useState(false);
 	let handleToggle = (e) => {
 		e.preventDefault();
 	};
+
 	switch (type) {
 		case "text":
 			inputMode = inputMode || "text";
@@ -116,10 +113,10 @@ const EInput = ({
 			{label && (
 				<FormLabel
 					position={"absolute"}
-					top={isFocused ? "-8px" : "14px"}
-					left={isFocused ? "13px" : leftIcon ? "42px" : "10px"}
+					top={isFocused || value ? "-8px" : "14px"}
+					left={isFocused || value ? "13px" : leftIcon ? "42px" : "10px"}
 					display={"block"}
-					fontSize={isFocused ? "12px" : "16px"}
+					fontSize={isFocused || value ? "12px" : "16px"}
 					fontWeight={500}
 					color={labelColor}
 					borderRadius={"5px"}
@@ -211,7 +208,7 @@ const EInput = ({
 								onFocus && onFocus(e);
 							}}
 							onBlur={(e) => {
-								setIsFocused(value || false);
+								setIsFocused(false);
 								onBlur && onBlur(e);
 							}}
 							{...rest}
