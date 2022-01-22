@@ -285,7 +285,7 @@ const theme = extendTheme({
 					h: "33px",
 					pos: "absolute",
 					bottom: "66px",
-					left: "1",
+					left: "2",
 					_hover: {
 						bg: whiten("primary.dark.200", 20),
 						fill: "white",
