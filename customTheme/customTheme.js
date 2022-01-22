@@ -339,7 +339,7 @@ const theme = extendTheme({
 	styles: {
 		global: (props) => ({
 			body: {
-				bg: mode("backgrounds.light.e200", "backgrounds.dark.e200")(props),
+				bg: mode("backgrounds.light.e100", "backgrounds.dark.e100")(props),
 			},
 		}),
 	},
