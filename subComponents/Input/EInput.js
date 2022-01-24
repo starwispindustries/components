@@ -144,8 +144,10 @@ const EInput = ({
 					px={"7px"}
 					bg={labelBGColor}
 					zIndex={2}
+					w={10}
+					textAlign={"center"}
 				>
-					{maxCharacters}
+					<Box>{maxCharacters}</Box>
 				</FormLabel>
 			)}
 			<InputGroup w={isFullWidth ? "full" : "302px"} maxW={"full"}>
