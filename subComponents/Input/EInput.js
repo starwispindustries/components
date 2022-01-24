@@ -89,9 +89,9 @@ const EInput = ({
 			rightIcon = isDisabled ? (
 				""
 			) : passwordVisible ? (
-				<ViewOffIcon cursor={"pointer"} />
+				<ViewOffIcon />
 			) : (
-				<ViewIcon cursor={"pointer"} />
+				<ViewIcon />
 			);
 			break;
 
@@ -262,6 +262,7 @@ const EInput = ({
 					<InputRightElement
 						h={"52px"}
 						color={iconRightColor}
+						cursor={"pointer"}
 						onClick={handleToggle}
 					>
 						{rightIcon}
