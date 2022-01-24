@@ -245,10 +245,12 @@ const theme = extendTheme({
 				transparent: (props) => ({
 					bg: "transparent",
 					_hover: {
-						bg: mode(
-							darken("primary.light._000", 20),
-							whiten("primary.dark._000", 30)
-						)(props),
+						bg: {
+							md: mode(
+								darken("primary.light._000", 20),
+								whiten("primary.dark._000", 30)
+							)(props),
+						},
 					},
 				}),
 				transparent_nav_a: (props) => ({
@@ -259,10 +261,12 @@ const theme = extendTheme({
 					fill: mode("primary.light.200", "primary.dark.200")(props),
 					stroke: mode("primary.light.200", "primary.dark.200")(props),
 					_hover: {
-						bg: mode(
-							darken("primary.light._000", 10),
-							whiten("backgrounds.dark._000", 20)
-						)(props),
+						bg: {
+							md: mode(
+								darken("primary.light._000", 10),
+								whiten("backgrounds.dark._000", 20)
+							)(props),
+						},
 					},
 				}),
 				transparent_nav: (props) => ({
@@ -273,10 +277,12 @@ const theme = extendTheme({
 					fill: mode("text.light.subtext", "text.dark.subtext")(props),
 					stroke: mode("text.light.subtext", "text.dark.subtext")(props),
 					_hover: {
-						bg: mode(
-							darken("primary.light._000", 10),
-							whiten("backgrounds.dark._000", 20)
-						)(props),
+						bg: {
+							md: mode(
+								darken("primary.light._000", 10),
+								whiten("backgrounds.dark._000", 20)
+							)(props),
+						},
 					},
 				}),
 				drawer_mini: (props) => ({

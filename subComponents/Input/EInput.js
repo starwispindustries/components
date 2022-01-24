@@ -168,7 +168,7 @@ const EInput = ({
 						h={"266px"}
 						overflow={"hidden"}
 						w={isFullWidth ? "full" : "302px"}
-						border={"1.5px solid"}
+						border={"2px solid"}
 						borderColor={
 							isDisabled
 								? borderColor
@@ -225,9 +225,9 @@ const EInput = ({
 						w={isFullWidth ? "full" : "302px"}
 						maxW={"full"}
 						h={"52px"}
-						_focus={{ borderColor: focusBorderColor, borderWidth: "1.5px" }}
+						_focus={{ borderColor: focusBorderColor, borderWidth: "2px" }}
 						_hover={{ borderColor: hoverBorderColor }}
-						_invalid={{ borderColor: errorBorderColor, borderWidth: "1.5px" }}
+						_invalid={{ borderColor: errorBorderColor, borderWidth: "2px" }}
 						_placeholder={{
 							color: placeHolderColor,
 							fontSize: "inherit",
@@ -236,7 +236,7 @@ const EInput = ({
 						_disabled={{ borderColor: borderColor, pointerEvents: "none" }}
 						tabIndex={isDisabled ? "-1" : "1"}
 						autoComplete={autoComplete}
-						border={"1.5px solid"}
+						border={"2px solid"}
 						borderColor={focusBorderColor}
 						borderRadius={"10px"}
 						bg={"transparent"}
