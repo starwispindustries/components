@@ -215,7 +215,7 @@ const theme = extendTheme({
 				}),
 				secondary: (props) => ({
 					bg: "transparent",
-					border: "1px solid",
+					border: "2px solid",
 					borderColor: mode("primary.light.200", "primary.dark.200")(props),
 					color: mode("primary.light.200", "primary.dark.200")(props),
 					_hover: {
