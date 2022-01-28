@@ -17,10 +17,15 @@ const ESelectInput = ({
 	isFullWidth,
 	leftIcon,
 	rightIcon,
+	maxW,
 	...rest
 }) => {
 	return (
-		<Box position={"relative"}>
+		<Box
+			position={"relative"}
+			w={isFullWidth ? "full" : "302px"}
+			maxW={maxW || "full"}
+		>
 			<EInput
 				leftIcon={leftIcon}
 				rightIcon={rightIcon}
@@ -34,6 +39,7 @@ const ESelectInput = ({
 				placeholder={"placeholder"}
 				error={error}
 				onChange={() => {}}
+				maxW={maxW}
 			/>
 			<Select
 				position={"absolute"}
@@ -41,7 +47,7 @@ const ESelectInput = ({
 				top={"8px"}
 				name={name}
 				w={isFullWidth ? "full" : "302px"}
-				maxW={"full"}
+				maxW={maxW || "full"}
 				h={"52px"}
 				color={isDisabled && "transparent"}
 				opacity={0}

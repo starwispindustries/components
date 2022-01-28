@@ -10,7 +10,7 @@ import {
 	Textarea,
 	useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const EInput = ({
 	type,
@@ -32,6 +32,7 @@ const EInput = ({
 	isRequired,
 	autoComplete,
 	maxCharacters,
+	maxW,
 	...rest
 }) => {
 	const borderColor = useColorModeValue("#f0f0f0", "#2E2E2E");
@@ -109,7 +110,12 @@ const EInput = ({
 	}
 
 	return (
-		<Box position={"relative"} mt={2}>
+		<Box
+			position={"relative"}
+			mt={2}
+			w={isFullWidth ? "full" : "302px"}
+			maxW={maxW || "full"}
+		>
 			{label && (
 				<FormLabel
 					position={"absolute"}
@@ -150,7 +156,7 @@ const EInput = ({
 					<Box>{maxCharacters}</Box>
 				</FormLabel>
 			)}
-			<InputGroup w={isFullWidth ? "full" : "302px"} maxW={"full"}>
+			<InputGroup w={isFullWidth ? "full" : "302px"} maxW={maxW || "full"}>
 				{leftIcon && (
 					<InputLeftElement
 						pointerEvents="none"
@@ -184,7 +190,7 @@ const EInput = ({
 							name={name}
 							w={isFullWidth ? "full" : "302px"}
 							h={"266px"}
-							maxW={"full"}
+							maxW={maxW || "full"}
 							_placeholder={{
 								color: placeHolderColor,
 								fontSize: "inherit",
@@ -223,7 +229,7 @@ const EInput = ({
 							type !== "password" ? type : passwordVisible ? "text" : "password"
 						}
 						w={isFullWidth ? "full" : "302px"}
-						maxW={"full"}
+						maxW={maxW || "full"}
 						h={"52px"}
 						_focus={{ borderColor: focusBorderColor, borderWidth: "2px" }}
 						_hover={{ borderColor: hoverBorderColor }}
