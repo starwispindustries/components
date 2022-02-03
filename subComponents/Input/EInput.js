@@ -35,7 +35,7 @@ const EInput = ({
 	maxW,
 	...rest
 }) => {
-	const borderColor = useColorModeValue("#f0f0f0", "#2E2E2E");
+	const borderColor = useColorModeValue("#f0f0f0", "text.dark.disabled");
 	const errorBorderColor = useColorModeValue("red.e200", "red.e200");
 	const focusBorderColor = useColorModeValue(
 		"primary.light.200",
@@ -245,6 +245,8 @@ const EInput = ({
 						border={"1px solid"}
 						borderColor={focusBorderColor}
 						borderRadius={"10px"}
+						outline={"none"}
+						outlineColor={"transparent"}
 						bg={"transparent"}
 						color={textColor}
 						fontSize={"16px"}

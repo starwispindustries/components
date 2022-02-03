@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 const CustomIcon = ({ children }) => {
@@ -24,17 +25,18 @@ const CustomIcon = ({ children }) => {
 	);
 };
 
-const CustomButton = ({ children, onClick, active }) => {
+const CustomButton = ({ children, path, onClick, active }) => {
 	return (
-		<Button
-			onClick={onClick}
-			w="100%"
-			variant={active ? "active_sidebar_button" : "sidebar_button"}
-			size="sm"
-			_focus={{ outline: "none" }}
-		>
-			{children}
-		</Button>
+		<Link href={path}>
+			<Button
+				w="100%"
+				variant={active ? "active_sidebar_button" : "sidebar_button"}
+				size="sm"
+				_focus={{ outline: "none" }}
+			>
+				{children}
+			</Button>
+		</Link>
 	);
 };
 
@@ -47,6 +49,7 @@ const SidebarContent = ({ onClick, active }) => {
 					onClick("home");
 					router.push("/");
 				}}
+				path={"/"}
 				active={active === "home"}
 			>
 				<CustomIcon>
@@ -59,6 +62,7 @@ const SidebarContent = ({ onClick, active }) => {
 					onClick("class");
 					router.push("/class");
 				}}
+				path={"/class"}
 				active={active === "class"}
 			>
 				<CustomIcon>
@@ -72,6 +76,7 @@ const SidebarContent = ({ onClick, active }) => {
 					onClick("i");
 					router.push("/i");
 				}}
+				path={"/i"}
 				active={active === "i"}
 			>
 				<CustomIcon>
