@@ -11,6 +11,7 @@ import {
 	useColorModeValue,
 	Center,
 	Divider,
+	useDisclosure,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
@@ -25,7 +26,7 @@ const CustomIcon = ({ children }) => {
 	);
 };
 
-const CustomButton = ({ children, path, onClick, active }) => {
+const CustomButton = ({ children, path, active }) => {
 	return (
 		<Link href={path}>
 			<Button
@@ -40,30 +41,19 @@ const CustomButton = ({ children, path, onClick, active }) => {
 	);
 };
 
-const SidebarContent = ({ onClick, active }) => {
+const SidebarContent = ({}) => {
 	const router = useRouter();
 	return (
 		<VStack mt="29px" spacing="9px">
-			<CustomButton
-				onClick={() => {
-					onClick("home");
-					router.push("/");
-				}}
-				path={"/"}
-				active={active === "home"}
-			>
+			<CustomButton path={"/"} active={router.pathname === "/"}>
 				<CustomIcon>
 					<path d="M10.8333 2.5V7.5H17.5V2.5H10.8333ZM10.8333 17.5H17.5V9.16667H10.8333V17.5ZM2.5 17.5H9.16667V12.5H2.5V17.5ZM2.5 10.8333H9.16667V2.5H2.5V10.8333Z" />
 				</CustomIcon>
 			</CustomButton>
 
 			<CustomButton
-				onClick={() => {
-					onClick("class");
-					router.push("/class");
-				}}
-				path={"/class"}
-				active={active === "class"}
+				path={"/classroom"}
+				active={router.pathname === "/classroom"}
 			>
 				<CustomIcon>
 					<path d="M10 5.6886C10.7735 5.6886 11.5154 5.99589 12.0624 6.54287C12.6094 7.08985 12.9167 7.83172 12.9167 8.60527C12.9167 9.37881 12.6094 10.1207 12.0624 10.6677C11.5154 11.2146 10.7735 11.5219 10 11.5219C9.22645 11.5219 8.48459 11.2146 7.93761 10.6677C7.39062 10.1207 7.08333 9.37881 7.08333 8.60527C7.08333 7.83172 7.39062 7.08985 7.93761 6.54287C8.48459 5.99589 9.22645 5.6886 10 5.6886ZM4.16667 7.77193C4.63333 7.77193 5.06667 7.89693 5.44167 8.12193C5.31667 9.3136 5.66667 10.4969 6.38333 11.4219C5.96667 12.2219 5.13333 12.7719 4.16667 12.7719C3.50363 12.7719 2.86774 12.5085 2.3989 12.0397C1.93006 11.5709 1.66667 10.935 1.66667 10.2719C1.66667 9.60889 1.93006 8.97301 2.3989 8.50416C2.86774 8.03532 3.50363 7.77193 4.16667 7.77193ZM15.8333 7.77193C16.4964 7.77193 17.1323 8.03532 17.6011 8.50416C18.0699 8.97301 18.3333 9.60889 18.3333 10.2719C18.3333 10.935 18.0699 11.5709 17.6011 12.0397C17.1323 12.5085 16.4964 12.7719 15.8333 12.7719C14.8667 12.7719 14.0333 12.2219 13.6167 11.4219C14.3333 10.4969 14.6833 9.3136 14.5583 8.12193C14.9333 7.89693 15.3667 7.77193 15.8333 7.77193ZM4.58333 16.3136C4.58333 14.5886 7.00833 13.1886 10 13.1886C12.9917 13.1886 15.4167 14.5886 15.4167 16.3136V17.7719H4.58333V16.3136ZM0 17.7719V16.5219C0 15.3636 1.575 14.3886 3.70833 14.1053C3.21667 14.6719 2.91667 15.4553 2.91667 16.3136V17.7719H0ZM20 17.7719H17.0833V16.3136C17.0833 15.4553 16.7833 14.6719 16.2917 14.1053C18.425 14.3886 20 15.3636 20 16.5219V17.7719Z" />
@@ -71,14 +61,7 @@ const SidebarContent = ({ onClick, active }) => {
 				</CustomIcon>
 			</CustomButton>
 
-			<CustomButton
-				onClick={() => {
-					onClick("i");
-					router.push("/i");
-				}}
-				path={"/i"}
-				active={active === "i"}
-			>
+			<CustomButton path={"/i"} active={router.pathname === "/i"}>
 				<CustomIcon>
 					<g clipPath="url(#clip0_20_146)">
 						<path d="M10.0002 3.33337C10.8842 3.33337 11.7321 3.68456 12.3572 4.30968C12.9823 4.93481 13.3335 5.78265 13.3335 6.66671C13.3335 7.55076 12.9823 8.39861 12.3572 9.02373C11.7321 9.64885 10.8842 10 10.0002 10C9.11611 10 8.26826 9.64885 7.64314 9.02373C7.01802 8.39861 6.66683 7.55076 6.66683 6.66671C6.66683 5.78265 7.01802 4.93481 7.64314 4.30968C8.26826 3.68456 9.11611 3.33337 10.0002 3.33337ZM10.0002 11.6667C13.6835 11.6667 16.6668 13.1584 16.6668 15V16.6667H3.3335V15C3.3335 13.1584 6.31683 11.6667 10.0002 11.6667Z" />
@@ -95,8 +78,10 @@ const SidebarContent = ({ onClick, active }) => {
 	);
 };
 
-const Sidebar = ({ isOpen, variant, onClose, onClick, active }) => {
+const Sidebar = ({ variant }) => {
 	const bg = useColorModeValue("primary.dark.200", "backgrounds.dark.e000");
+	const { isOpen, onOpen, onClose } = useDisclosure();
+
 	return variant === "sidebar" ? (
 		<Box
 			position="fixed"
@@ -112,12 +97,7 @@ const Sidebar = ({ isOpen, variant, onClose, onClick, active }) => {
 				<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
 			</Center>
 			<Divider borderColor="primary.light.100" />
-			<SidebarContent
-				onClick={(param) => {
-					onClick(param);
-				}}
-				active={active}
-			/>
+			<SidebarContent />
 		</Box>
 	) : (
 		<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
