@@ -150,6 +150,83 @@ const theme = extendTheme({
 					color: mode("text.light.h1", "text.dark.h1")(props),
 					fontSize: "14px",
 				}),
+
+				cblackwhite: (props) => ({
+					color: mode("primary.dark._000", "primary.light._000")(props),
+				}),
+				cwhiteblack: (props) => ({
+					color: mode("primary.light._000", "primary.dark._000")(props),
+				}),
+				cblack: (props) => ({
+					color: mode("primary.dark._000", "primary.dark._000")(props),
+				}),
+				cwhite: (props) => ({
+					color: mode("primary.light._000", "primary.light._000")(props),
+				}),
+				csubtext: (props) => ({
+					color: mode("text.light.subtext", "text.dark.subtext")(props),
+				}),
+				ch3: (props) => ({
+					color: mode("text.light.h3_captions", "text.dark.h3_captions")(props),
+				}),
+				ch2: (props) => ({
+					color: mode("text.light.h2", "text.dark.h2")(props),
+				}),
+				ch1: (props) => ({
+					color: mode("text.light.h1_body", "text.dark.h1_body")(props),
+				}),
+				cdisabled: (props) => ({
+					color: mode("text.light.subtext", "text.dark.subtext")(props),
+				}),
+				cprimary: (props) => ({
+					color: mode("primary.light.200", "primary.dark.200")(props),
+				}),
+				coutline: (props) => ({
+					color: mode("text.light.outline", "text.dark.outline")(props),
+				}),
+			},
+
+			sizes: {
+				"2xs": {
+					fontSize: "10px",
+					lineHeight: "12.1px",
+				},
+				xs: {
+					fontSize: "12px",
+					lineHeight: "14.5px",
+				},
+				sm: {
+					fontSize: "14px",
+					lineHeight: "17px",
+				},
+				md: {
+					fontSize: "15px",
+					lineHeight: "18px",
+				},
+				lg: {
+					fontSize: "16px",
+					lineHeight: "19.5px",
+				},
+				xl: {
+					fontSize: "18px",
+					lineHeight: "22px",
+				},
+				"2xl": {
+					fontSize: "20px",
+					lineHeight: "24px",
+				},
+				"3xl": {
+					fontSize: "24px",
+					lineHeight: "29px",
+				},
+				"4xl": {
+					fontSize: "28px",
+					lineHeight: "34px",
+				},
+				"5xl": {
+					fontSize: "32px",
+					lineHeight: "39px",
+				},
 			},
 		},
 		Textarea: {
