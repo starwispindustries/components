@@ -2,6 +2,8 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
 	Box,
 	FormLabel,
+	Icon,
+	IconButton,
 	Input,
 	InputGroup,
 	InputLeftElement,
@@ -11,6 +13,7 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { EButton } from "../eButton";
 
 const EInput = ({
 	type,
@@ -33,6 +36,9 @@ const EInput = ({
 	autoComplete,
 	maxCharacters,
 	maxW,
+	isDeletable = false,
+	onDelete,
+	h = "266px",
 	...rest
 }) => {
 	const borderColor = useColorModeValue("#f0f0f0", "text.dark.disabled");
@@ -112,7 +118,7 @@ const EInput = ({
 	return (
 		<Box
 			position={"relative"}
-			mt={2}
+			mt={isDeletable ? 4 : 2}
 			w={isFullWidth ? "full" : "302px"}
 			maxW={maxW || "full"}
 		>
@@ -136,7 +142,7 @@ const EInput = ({
 					{label}
 				</FormLabel>
 			)}
-			{type === "textarea" && maxCharacters && (
+			{!isDeletable && type === "textarea" && maxCharacters && (
 				<FormLabel
 					position={"absolute"}
 					top={"-8px"}
@@ -156,6 +162,41 @@ const EInput = ({
 					<Box>{maxCharacters}</Box>
 				</FormLabel>
 			)}
+			{isDeletable && (
+				<FormLabel
+					position={"absolute"}
+					top={"-14px"}
+					right={"22px"}
+					display={"block"}
+					fontSize={"12px"}
+					fontWeight={500}
+					color={labelColor}
+					borderRadius={"5px"}
+					mr={"auto"}
+					p={0}
+					bg={labelBGColor}
+					zIndex={2}
+					w={8}
+					textAlign={"center"}
+					rounded={"full"}
+				>
+					<EButton
+						onClick={onDelete}
+						variant={"transparent"}
+						p={1}
+						h={7}
+						w={7}
+						rounded={"full"}
+					>
+						<Icon width="20px" height="20px" viewBox="0 0 20 20" fill="none">
+							<path
+								d="M5.00033 15.8333C5.00033 16.75 5.75033 17.5 6.66699 17.5H13.3337C14.2503 17.5 15.0003 16.75 15.0003 15.8333V5.83333H5.00033V15.8333ZM6.66699 7.5H13.3337V15.8333H6.66699V7.5ZM12.917 3.33333L12.0837 2.5H7.91699L7.08366 3.33333H4.16699V5H15.8337V3.33333H12.917Z"
+								fill="#EB5757"
+							/>
+						</Icon>
+					</EButton>
+				</FormLabel>
+			)}
 			<InputGroup w={isFullWidth ? "full" : "302px"} maxW={maxW || "full"}>
 				{leftIcon && (
 					<InputLeftElement
@@ -171,7 +212,7 @@ const EInput = ({
 
 				{type === "textarea" ? (
 					<Box
-						h={"266px"}
+						h={h}
 						overflow={"hidden"}
 						w={isFullWidth ? "full" : "302px"}
 						border={"1px solid"}
@@ -189,7 +230,7 @@ const EInput = ({
 							resize={"none"}
 							name={name}
 							w={isFullWidth ? "full" : "302px"}
-							h={"266px"}
+							h={h}
 							maxW={maxW || "full"}
 							_placeholder={{
 								color: placeHolderColor,
@@ -216,7 +257,7 @@ const EInput = ({
 								onFocus && onFocus(e);
 							}}
 							onBlur={(e) => {
-								setIsFocused(false);
+								setIsFocused(value || false);
 								onBlur && onBlur(e);
 							}}
 							{...rest}

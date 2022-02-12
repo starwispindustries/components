@@ -4,6 +4,7 @@ import {
 	mode,
 	whiten,
 	darken,
+	transparentize,
 	createBreakpoints,
 } from "@chakra-ui/theme-tools";
 
@@ -300,6 +301,20 @@ const theme = extendTheme({
 							whiten("primary.light.100", 70),
 							whiten("backgrounds.dark.100", 20)
 						)(props),
+					},
+				}),
+				primary_light: (props) => ({
+					bg: transparentize(
+						mode("primary.light.200", "primary.dark.200")(props),
+						0.1
+					),
+					border: "none",
+					color: mode("primary.light.200", "primary.dark.200")(props),
+					_hover: {
+						bg: transparentize(
+							mode("primary.light.200", "primary.dark.200")(props),
+							0.3
+						),
 					},
 				}),
 				sidebar_button: (props) => ({
