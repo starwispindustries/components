@@ -237,6 +237,7 @@ const EInput = ({
 								fontSize: "inherit",
 								fontWeight: "inherit",
 							}}
+							tabIndex={isDisabled ? "-1" : "1"}
 							autoComplete={autoComplete}
 							border={"0px solid"}
 							borderColor={"transparent"}
