@@ -303,6 +303,17 @@ const theme = extendTheme({
 						)(props),
 					},
 				}),
+				primary_ghost: (props) => ({
+					bg: "transparent",
+					border: "none",
+					color: mode("primary.light.200", "primary.dark.200")(props),
+					_hover: {
+						bg: transparentize(
+							mode("primary.light.200", "primary.dark.200")(props),
+							0.3
+						),
+					},
+				}),
 				primary_light: (props) => ({
 					bg: transparentize(
 						mode("primary.light.200", "primary.dark.200")(props),
