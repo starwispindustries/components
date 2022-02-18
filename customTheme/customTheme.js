@@ -269,6 +269,16 @@ const theme = extendTheme({
 						whiten("primary.dark.200", 10)
 					)(props),
 				},
+				_focus: {
+					bg: {
+						md: mode(
+							darken("primary.light._000", 20),
+							whiten("primary.dark._000", 30)
+						)(props),
+					},
+					outline: "none",
+					boxShadow: "none",
+				},
 			}),
 			// styles for different sizes ("sm", "md", "lg")
 			sizes: {
@@ -354,6 +364,15 @@ const theme = extendTheme({
 								whiten("primary.dark._000", 30)
 							)(props),
 						},
+					},
+					_focus: {
+						bg: {
+							md: mode(
+								darken("primary.light._000", 20),
+								whiten("primary.dark._000", 30)
+							)(props),
+						},
+						boxShadow: "none",
 					},
 				}),
 				transparent_nav_a: (props) => ({
