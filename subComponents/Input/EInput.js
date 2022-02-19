@@ -237,7 +237,7 @@ const EInput = ({
 								fontSize: "inherit",
 								fontWeight: "inherit",
 							}}
-							tabIndex={isDisabled ? "-1" : "1"}
+							tabIndex={isDisabled ? "-1" : "0"}
 							autoComplete={autoComplete}
 							border={"0px solid"}
 							borderColor={"transparent"}
@@ -282,7 +282,7 @@ const EInput = ({
 							fontWeight: "inherit",
 						}}
 						_disabled={{ borderColor: borderColor, pointerEvents: "none" }}
-						tabIndex={isDisabled ? "-1" : "1"}
+						tabIndex={isDisabled ? "-1" : "0"}
 						autoComplete={autoComplete}
 						border={"1px solid"}
 						borderColor={focusBorderColor}
