@@ -338,6 +338,21 @@ const theme = extendTheme({
 						),
 					},
 				}),
+				secondary_light: (props) => ({
+					bg: transparentize(
+						mode("primary.light.200", "primary.dark.200")(props),
+						0.4
+					),
+					border: "none",
+					borderColor: mode("primary.light.200", "primary.dark.200")(props),
+					color: mode("primary.light.200", "primary.dark.200")(props),
+					_hover: {
+						bg: mode(
+							whiten("primary.light.100", 70),
+							whiten("backgrounds.dark.100", 20)
+						)(props),
+					},
+				}),
 				sidebar_button: (props) => ({
 					bg: "transparent",
 					borderRadius: "10px",
