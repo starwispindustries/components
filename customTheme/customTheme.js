@@ -177,7 +177,7 @@ const theme = extendTheme({
 					color: mode("text.light.h1_body", "text.dark.h1_body")(props),
 				}),
 				cdisabled: (props) => ({
-					color: mode("text.light.subtext", "text.dark.subtext")(props),
+					color: mode("text.light.disabled", "text.dark.disabled")(props),
 				}),
 				cprimary: (props) => ({
 					color: mode("primary.light.200", "primary.dark.200")(props),
