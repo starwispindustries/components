@@ -93,7 +93,14 @@ const SidebarContent = ({}) => {
 };
 
 const Sidebar = ({ variant }) => {
-	const bg = useColorModeValue("primary.dark.200", "backgrounds.dark.e000");
+	const bg = useColorModeValue(
+		"backgrounds.light.e000",
+		"backgrounds.dark.e000"
+	);
+	const borderColor = useColorModeValue(
+		"primary.light.200",
+		"primary.dark.200"
+	);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return variant === "sidebar" ? (
@@ -110,7 +117,7 @@ const Sidebar = ({ variant }) => {
 			<Center w="full" h="54px" mb="5">
 				<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
 			</Center>
-			<Divider borderColor="primary.light.100" />
+			<Divider borderColor={borderColor} />
 			<SidebarContent />
 		</Box>
 	) : (

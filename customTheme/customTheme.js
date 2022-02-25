@@ -356,19 +356,19 @@ const theme = extendTheme({
 				sidebar_button: (props) => ({
 					bg: "transparent",
 					borderRadius: "10px",
-					fill: mode("primary.dark.100", "text.light.h3_captions")(props),
+					fill: mode("primary.dark.200", "primary.dark.200")(props),
 					_hover: {
 						bg: mode(
-							darken("primary.dark.200", 10),
-							whiten("backgrounds.dark.e000", 20)
+							darken("primary.dark.200", 20),
+							whiten("primary.dark.200", 20)
 						)(props),
 						fill: "white",
 					},
 				}),
 				active_sidebar_button: (props) => ({
 					borderRadius: "10px",
-					fill: "white",
-					bg: mode("primary.light.200", "text.dark.disabled")(props),
+					fill: mode("white", "black")(props),
+					bg: mode("primary.light.200", "primary.dark.200")(props),
 				}),
 				transparent: (props) => ({
 					bg: "transparent",
