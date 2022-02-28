@@ -188,11 +188,13 @@ const EInput = ({
 						w={7}
 						rounded={"full"}
 					>
-						<Icon width="20px" height="20px" viewBox="0 0 20 20" fill="none">
-							<path
-								d="M5.00033 15.8333C5.00033 16.75 5.75033 17.5 6.66699 17.5H13.3337C14.2503 17.5 15.0003 16.75 15.0003 15.8333V5.83333H5.00033V15.8333ZM6.66699 7.5H13.3337V15.8333H6.66699V7.5ZM12.917 3.33333L12.0837 2.5H7.91699L7.08366 3.33333H4.16699V5H15.8337V3.33333H12.917Z"
-								fill="#EB5757"
-							/>
+						<Icon
+							width="20px"
+							height="20px"
+							viewBox="0 0 24 24"
+							fill={iconRightColor}
+						>
+							<path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" />
 						</Icon>
 					</EButton>
 				</FormLabel>
@@ -237,7 +239,6 @@ const EInput = ({
 								fontSize: "inherit",
 								fontWeight: "inherit",
 							}}
-							tabIndex={isDisabled ? "-1" : "0"}
 							autoComplete={autoComplete}
 							border={"0px solid"}
 							borderColor={"transparent"}
@@ -282,7 +283,6 @@ const EInput = ({
 							fontWeight: "inherit",
 						}}
 						_disabled={{ borderColor: borderColor, pointerEvents: "none" }}
-						tabIndex={isDisabled ? "-1" : "0"}
 						autoComplete={autoComplete}
 						border={"1px solid"}
 						borderColor={focusBorderColor}
