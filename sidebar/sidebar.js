@@ -43,14 +43,11 @@ const CustomButton = ({ children, path, active }) => {
 
 const SidebarContent = ({}) => {
 	const router = useRouter();
-	console.log(router);
-
 	const origin =
 		typeof window !== "undefined" && window.location.origin
 			? window.location.origin
 			: "";
 
-	console.log(origin);
 	return (
 		<VStack mt="29px" spacing="9px">
 			<CustomButton
