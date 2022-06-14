@@ -1,6 +1,8 @@
 // 1. Import `extendTheme`
+
+import { createBreakpoints, darken, mode, transparentize, whiten } from "@chakra-ui/theme-tools";
+
 import { extendTheme } from "@chakra-ui/react";
-import { mode, whiten, darken, transparentize, createBreakpoints } from "@chakra-ui/theme-tools";
 
 const config = {
     initialColorMode: "light",
