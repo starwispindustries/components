@@ -59,7 +59,7 @@ const CustomHead = ({
           )
         : currentUrl;
 
-    const pageTitle = `${title} - ${module} ${
+    const pageTitle = `${title} ${currentPath ? "-" : "|"}  ${module} ${
         currentPath ? "| " + currentPath[0]?.toUpperCase() + currentPath.slice(1) : ""
     }`;
     return (
