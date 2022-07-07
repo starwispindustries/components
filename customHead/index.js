@@ -14,6 +14,20 @@ const CustomHead = ({
         },
     ],
 }) => {
+    const { asPath } = useRouter();
+
+    const currentUrl = asPath.split("/")[1];
+    const currentPath = currentUrl?.includes("?")
+        ? currentUrl?.slice(
+              0,
+              currentUrl.split("")?.findIndex((char) => char === "?") ?? currentUrl.length - 1
+          )
+        : currentUrl;
+
+    const pageTitle = `${title} ${currentPath ? "-" : "|"}  ${module} ${
+        currentPath ? "| " + currentPath[0]?.toUpperCase() + currentPath.slice(1) : ""
+    }`;
+
     const metaData = [
         {
             name: `description`,
@@ -21,7 +35,7 @@ const CustomHead = ({
         },
         {
             property: `og:title`,
-            content: title,
+            content: pageTitle || "Edvora" + " " + module,
         },
         {
             property: `og:description`,
@@ -41,7 +55,7 @@ const CustomHead = ({
         },
         {
             name: `twitter:title`,
-            content: title,
+            content: pageTitle || "Edvora" + " " + module,
         },
         {
             name: `twitter:description`,
@@ -49,19 +63,6 @@ const CustomHead = ({
         },
     ].concat(meta);
 
-    const { asPath } = useRouter();
-
-    const currentUrl = asPath.split("/")[1];
-    const currentPath = currentUrl?.includes("?")
-        ? currentUrl?.slice(
-              0,
-              currentUrl.split("")?.findIndex((char) => char === "?") ?? currentUrl.length - 1
-          )
-        : currentUrl;
-
-    const pageTitle = `${title} ${currentPath ? "-" : "|"}  ${module} ${
-        currentPath ? "| " + currentPath[0]?.toUpperCase() + currentPath.slice(1) : ""
-    }`;
     return (
         <Head>
             <title>{pageTitle}</title>
