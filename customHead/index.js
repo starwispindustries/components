@@ -24,8 +24,8 @@ const CustomHead = ({
           )
         : currentUrl;
 
-    const pageTitle = `${title} ${currentPath ? "-" : "|"}  ${module} ${
-        currentPath ? "| " + currentPath[0]?.toUpperCase() + currentPath.slice(1) : ""
+    const pageTitle = `${title} | ${module} ${
+        currentPath ? "- " + currentPath[0]?.toUpperCase() + currentPath.slice(1) : ""
     }`;
 
     const metaData = [
