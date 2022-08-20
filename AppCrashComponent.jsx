@@ -17,7 +17,7 @@ const AppCrashComponent = () => {
     };
 
     return (
-        <VStack h={"100vh"} border={"1px solid red"} placeContent={"center"}>
+        <VStack h={"100vh"} placeContent={"center"}>
             <Stack
                 spacing={4}
                 p={10}
