@@ -1,11 +1,21 @@
-import { HStack, IconButton, Spacer } from "@chakra-ui/react";
+import {
+  HStack,
+  IconButton,
+  Spacer,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React from "react";
 import HamburgerMenu from "../Icons/HamburgerMenu";
 import NotificationIcon from "../Icons/NotificationIcon";
 
 const MobileTopBar = ({ onOpen }) => {
+  const bg = useColorModeValue(
+    "backgrounds.light.e000",
+    "backgrounds.dark.e000"
+  );
+
   return (
-    <HStack w="full" p="20px" pb="0">
+    <HStack w="full" p="15px" bg={bg}>
       <IconButton
         icon={<HamburgerMenu />}
         onClick={onOpen}
