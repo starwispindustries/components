@@ -108,8 +108,6 @@ const Sidebar = ({ variant, isDark }) => {
 
 	return variant === "sidebar" ? (
 		<Box
-			position="fixed"
-			left={0}
 			p={5}
 			w="84px"
 			top={0}
