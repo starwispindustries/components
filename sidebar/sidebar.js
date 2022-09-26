@@ -12,11 +12,18 @@ import {
 	Center,
 	Divider,
 	useDisclosure,
+	HStack,
+	Spacer,
+	Text,
+	IconButton,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
+import HamburgerMenu from "../Icons/HamburgerMenu";
+import NotificationIcon from "../Icons/NotificationIcon";
 
 const CustomIcon = ({ children }) => {
 	return (
@@ -122,17 +129,28 @@ const Sidebar = ({ variant, isDark }) => {
 			<SidebarContent isDark={isDark} />
 		</Box>
 	) : (
-		<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-			<DrawerOverlay>
-				<DrawerContent>
-					<DrawerCloseButton />
-					<DrawerHeader>Chakra-UI</DrawerHeader>
-					<DrawerBody>
-						<SidebarContent onClick={onClose} isDark={isDark} />
-					</DrawerBody>
-				</DrawerContent>
-			</DrawerOverlay>
-		</Drawer>
+		<>
+			<HStack w="full" p="20px" pb="0">
+				<IconButton icon={<HamburgerMenu />} onClick={onOpen} w="30px" h="30px" bg="transparent" _hover={{ bg: 'transparent' }} />
+
+				<Spacer />
+
+				<HStack>
+					<IconButton icon={<NotificationIcon />} w="30px" h="30px" bg="transparent" _hover={{ bg: 'transparent' }} />
+				</HStack>
+			</HStack>
+			<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+				<DrawerOverlay>
+					<DrawerContent>
+						<DrawerCloseButton />
+						<DrawerHeader>Chakra-UI</DrawerHeader>
+						<DrawerBody>
+							<SidebarContent onClick={onClose} isDark={isDark} />
+						</DrawerBody>
+					</DrawerContent>
+				</DrawerOverlay>
+			</Drawer>
+		</>
 	);
 };
 
