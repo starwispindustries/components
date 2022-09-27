@@ -7,6 +7,7 @@ import {
 import React from "react";
 import HamburgerMenu from "../Icons/HamburgerMenu";
 import NotificationIcon from "../Icons/NotificationIcon";
+import UserAvatar from "../subComponents/UserAvatar";
 
 const MobileTopBar = ({ onOpen }) => {
   const bg = useColorModeValue(
@@ -34,6 +35,11 @@ const MobileTopBar = ({ onOpen }) => {
           h="30px"
           bg="transparent"
           _hover={{ bg: "transparent" }}
+        />
+
+        <UserAvatar
+          fullName={"Ciddarth Raaj"}
+          filekey="f474760d-4ee5-4f14-b93f-8871ab5735db"
         />
       </HStack>
     </HStack>
