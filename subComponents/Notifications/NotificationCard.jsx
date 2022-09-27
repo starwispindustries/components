@@ -16,6 +16,7 @@ import {
 // import { markAsRead } from "../../lib/redux/actions/notificationActions";
 import { hexToRgbString } from "../../utils";
 import notification from "../../Icons/Notifications/notification";
+import { markAsRead } from "../../redux/actions/notificationActions";
 
 const NotificationCard = ({
   id,
@@ -40,10 +41,10 @@ const NotificationCard = ({
   bgColor = hexToRgbString(bgColor, colorMode == "light" ? 0.15 : 0.3);
 
   const onClick = () => {
-    // const res = markAsRead([id]);
-    // if (res !== undefined) {
-    //   setAsRead(id);
-    // }
+    const res = markAsRead([id]);
+    if (res !== undefined) {
+      setAsRead(id);
+    }
   };
 
   return (

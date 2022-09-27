@@ -1,15 +1,9 @@
 import axios from 'axios';
 import btoa from 'btoa';
+import { MAIN_URL } from '../constants/index';
 
 export function readCookie(name) {
   // use while development.
-  // const dummyUser = {
-  //   "token": "2fe77aec-19ca-4b89-a234-1c4a18013947",
-  //   "username": "cf",
-  //   "organization_id": "101",
-  //   "session_id": "5966c7ac-c5e6-441a-9d50-b66c99801ec6",
-  //   "role_id": "62011052aadbcc1442b4b159"
-  // };
   const dummyUser = {
     "token": "ddce6479-c184-4562-8f3e-31fcf4530dfd",
     "username": "cs",
@@ -17,13 +11,6 @@ export function readCookie(name) {
     "session_id": "9e5e35bb-c058-470c-b757-5fffaaf2c167",
     "role_id": "6201106aaadbcc1442b4b15a"
   };
-  // const dummyUser = {
-  //   token: '4e867d66-817c-4cc5-a8d5-43d29ecd40ff',
-  //   username: 'ritiksharma_student',
-  //   organization_id: '111',
-  //   session_id: '65f0fe19-0076-4b87-b53b-e5ccbae494c7',
-  //   role_id: '6201106aaadbcc1442b4b15a',
-  // };
   return dummyUser[name];
 
   if (typeof document === 'undefined') return null;
@@ -41,34 +28,6 @@ export function readCookie(name) {
   }
   return null;
 }
-
-export const loginApiCall = async (url, options, headers) => {
-  const response = await axios({
-    url,
-    ...headers,
-    ...options,
-  })
-    .then((resp) => {
-      if (resp.status === 200) {
-        return resp.data;
-      } else {
-        // handle other 2xx codes
-        console.log(resp);
-      }
-    })
-    .catch((err) => {
-      const error = new Error(err);
-      error.status = err?.response?.status;
-      error.response = err?.response;
-      // for login error
-      if (error?.status == 498) {
-        window.location.href = 'https://main.edvora.me';
-      }
-    });
-
-  return response;
-};
-
 /**
  * Makes an Edvora backend API call and handles errors. Accepts an *AxiosOption*
  * object to specify other parameters for the request. Automatically handles
@@ -104,8 +63,7 @@ export const apiCall = async (url, options, headers) => {
       error.status = err.response?.status;
       // for login error
       if (error?.status == 498) {
-        // window.location.href = 'https://main.edvora.me/l';
-        window.location.href = '/l';
+        window.location.href = MAIN_URL + "l";
       }
       if (err.message !== 'canceled') throw error;
     });

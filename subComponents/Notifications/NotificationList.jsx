@@ -3,46 +3,46 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   Button,
   Center,
-  Flex,
   HStack,
   Spinner,
   Text,
   VStack,
 } from "@chakra-ui/react";
 
-// import { getNotifications } from "../../lib/redux/actions/notificationActions";
 import NotificationCard from "./NotificationCard";
-import { IS_LOADING, IS_NOT_INITIATED } from "../../redux/actions/actionTypes";
+import {
+  FETCHING_NOTIFICATIONS_STATUS,
+  IS_LOADING,
+  IS_NOT_INITIATED,
+} from "../../redux/actions/actionTypes";
+import { getNotifications } from "../../redux/actions/notificationActions";
 
 const NotificationsList = () => {
   const dispatch = useDispatch();
 
-  const notifications = [];
-  const notificationsStatus = IS_LOADING;
+  const notifications = useSelector(
+    (state) => state?.notification?.notifications
+  );
+  const notificationsStatus = useSelector(
+    (state) => state?.notification?.fetchStatus
+  );
 
-  //   const notifications = useSelector(
-  //     (state) => state?.notification?.notifications
-  //   );
-  //   const notificationsStatus = useSelector(
-  //     (state) => state?.notification?.fetchStatus
-  //   );
-
-  //   useEffect(() => {
-  //     dispatch(getNotifications());
-  //   }, []);
+  useEffect(() => {
+    dispatch(getNotifications());
+  }, []);
 
   const setAsRead = (id) => {
-    // let tmpNotification = notifications;
-    // for (let i = 0; i < tmpNotification.length; i++) {
-    //   if (tmpNotification[i]._id === id) {
-    //     tmpNotification[i].read = true;
-    //     dispatch({
-    //       type: FETCHING_NOTIFICATIONS_STATUS,
-    //       payload: tmpNotification,
-    //     });
-    //     break;
-    //   }
-    // }
+    let tmpNotification = notifications;
+    for (let i = 0; i < tmpNotification.length; i++) {
+      if (tmpNotification[i]._id === id) {
+        tmpNotification[i].read = true;
+        dispatch({
+          type: FETCHING_NOTIFICATIONS_STATUS,
+          payload: tmpNotification,
+        });
+        break;
+      }
+    }
   };
 
   return (
@@ -67,7 +67,7 @@ const NotificationsList = () => {
       <VStack
         w="full"
         overflowY={"auto"}
-        maxH={{ base: "95vh", md: "500px" }}
+        maxH={{ base: "85vh", md: "500px" }}
         p={"20px"}
         pr="15px"
         pb="0px"
