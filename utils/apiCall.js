@@ -11,7 +11,7 @@ export function readCookie(name) {
     "session_id": "9e5e35bb-c058-470c-b757-5fffaaf2c167",
     "role_id": "6201106aaadbcc1442b4b15a"
   };
-  return dummyUser[name];
+  // return dummyUser[name];
 
   if (typeof document === 'undefined') return null;
 
