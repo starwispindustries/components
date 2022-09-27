@@ -18,6 +18,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import MobileTopBar from "./MobileTopBar";
+
 const CustomIcon = ({ children }) => {
 	return (
 		<Icon viewBox="0 0 20 20" fill="inherit" w="20px" h="20px">
@@ -106,8 +108,6 @@ const Sidebar = ({ variant, isDark }) => {
 
 	return variant === "sidebar" ? (
 		<Box
-			position="fixed"
-			left={0}
 			p={5}
 			w="84px"
 			top={0}
@@ -122,17 +122,20 @@ const Sidebar = ({ variant, isDark }) => {
 			<SidebarContent isDark={isDark} />
 		</Box>
 	) : (
-		<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-			<DrawerOverlay>
-				<DrawerContent>
-					<DrawerCloseButton />
-					<DrawerHeader>Chakra-UI</DrawerHeader>
-					<DrawerBody>
-						<SidebarContent onClick={onClose} isDark={isDark} />
-					</DrawerBody>
-				</DrawerContent>
-			</DrawerOverlay>
-		</Drawer>
+		<>
+			<MobileTopBar onOpen={onOpen} />
+			<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+				<DrawerOverlay>
+					<DrawerContent>
+						<DrawerCloseButton />
+						<DrawerHeader>Chakra-UI</DrawerHeader>
+						<DrawerBody>
+							<SidebarContent onClick={onClose} isDark={isDark} />
+						</DrawerBody>
+					</DrawerContent>
+				</DrawerOverlay>
+			</Drawer>
+		</>
 	);
 };
 
