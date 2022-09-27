@@ -1,14 +1,16 @@
-import { Flex, VStack } from "@chakra-ui/react";
 import React from "react";
-import NotificationCard from "./NotificationCard";
+import { Flex, useColorModeValue, VStack } from "@chakra-ui/react";
+
 import NotificationsList from "./NotificationList";
 
 const NotificationPopupMobile = () => {
+  const bg = useColorModeValue("primary.light._000", "primary.dark._000");
+
   return (
     <VStack
       w="full"
       h="calc(100% - 60px)"
-      bg="white"
+      bg={bg}
       position={"absolute"}
       zIndex="9999"
       top={"60px"}
