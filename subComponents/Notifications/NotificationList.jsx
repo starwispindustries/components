@@ -15,7 +15,11 @@ import {
   IS_LOADING,
   IS_NOT_INITIATED,
 } from "../../redux/actions/actionTypes";
-import { getNotifications } from "../../redux/actions/notificationActions";
+import {
+  getNotifications,
+  markAsRead,
+} from "../../redux/actions/notificationActions";
+import { useState } from "react";
 
 const NotificationsList = () => {
   const dispatch = useDispatch();
@@ -26,6 +30,8 @@ const NotificationsList = () => {
   const notificationsStatus = useSelector(
     (state) => state?.notification?.fetchStatus
   );
+
+  const [markAllLoading, setMarkAllLoading] = useState(false);
 
   useEffect(() => {
     dispatch(getNotifications());
@@ -45,6 +51,31 @@ const NotificationsList = () => {
     }
   };
 
+  const markAllAsRead = async () => {
+    if (notifications == undefined || notifications.length == 0) {
+      return;
+    }
+
+    try {
+      setMarkAllLoading(true);
+      const notificationsIDList = notifications
+        .filter((item) => {
+          if (item.read) {
+            return false;
+          }
+
+          return true;
+        })
+        .map((item) => item._id);
+
+      await markAsRead(notificationsIDList);
+      setMarkAllLoading(false);
+    } catch (err) {
+      setMarkAllLoading(false);
+      console.log("CIDD", err);
+    }
+  };
+
   return (
     <VStack pr="5px" pb="20px" w="full">
       <HStack
@@ -59,7 +90,12 @@ const NotificationsList = () => {
           <Text variant="h1">{"(" + notifications.length + ")"}</Text>
         </HStack>
 
-        <Button size={"xs"} variant="primary_ghost">
+        <Button
+          size={"xs"}
+          variant="primary_ghost"
+          onClick={markAllAsRead}
+          isLoading={markAllLoading}
+        >
           Mark all as read
         </Button>
       </HStack>
