@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { Avatar, Text, useColorModeValue } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchFileMetaData } from "../redux/actions/dataActions";
+import {
+  fetchFileDownloadURL,
+  fetchFileMetaData,
+} from "../redux/actions/dataActions";
 import { getInitials } from "../utils";
 
 const UserAvatar = ({ filekey, fullName, ...props }) => {
@@ -19,12 +22,13 @@ const UserAvatar = ({ filekey, fullName, ...props }) => {
   }, [filekey, dispatch, metadata]);
 
   //then if metadata is there then fetch downloadURL
-  // useEffect(() => {
-  //   if (filekey && metadata?._id === filekey && !metadata?.download_url) {
-  //     //only call if metadata is fetched
-  //     dispatch(fetchFileDownloadURL(filekey));
-  //   }
-  // }, [filekey, dispatch, metadata]);
+  useEffect(() => {
+    if (filekey && metadata?._id === filekey && !metadata?.download_url) {
+      //only call if metadata is fetched
+      // dispatch(fetchFileDownloadURL(filekey));
+    }
+    dispatch(fetchFileDownloadURL(filekey));
+  }, [filekey, dispatch, metadata]);
 
   const bg = useColorModeValue("borders.light.e100", "borders.dark.e100");
   const color = useColorModeValue("texts.light.e100", "texts.dark.e100");

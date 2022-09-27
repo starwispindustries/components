@@ -28,7 +28,7 @@ const MobileTopBar = ({ onOpen }) => {
 
       <Spacer />
 
-      <HStack>
+      <HStack spacing={"10px"}>
         <IconButton
           icon={<NotificationIcon />}
           w="30px"
@@ -40,6 +40,7 @@ const MobileTopBar = ({ onOpen }) => {
         <UserAvatar
           fullName={"Ciddarth Raaj"}
           filekey="f474760d-4ee5-4f14-b93f-8871ab5735db"
+          size="xs"
         />
       </HStack>
     </HStack>
