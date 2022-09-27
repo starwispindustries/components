@@ -128,6 +128,9 @@ const NotificationsList = () => {
               type={item.payload?.kind}
               read={item.read}
               setAsRead={setAsRead}
+              classroomId={item.payload?.classroom_id}
+              actionPath={item.payload?.action_path}
+              itemId={item.payload?.item_id}
             />
           ))
         )}

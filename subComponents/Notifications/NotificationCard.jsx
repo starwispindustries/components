@@ -16,15 +16,19 @@ import {
 import { hexToRgbString } from "../../utils";
 import notification from "../../Icons/Notifications/notification";
 import { markAsRead } from "../../redux/actions/notificationActions";
+import { CLASSROOM_URL } from "../../constants";
 
 const NotificationCard = ({
   id,
   content,
   date,
   classroomName,
+  classroomId,
   type,
   read,
   setAsRead,
+  actionPath,
+  itemId,
 }) => {
   const { colorMode } = useColorMode();
 
@@ -39,11 +43,34 @@ const NotificationCard = ({
       : NOTIFICATION_TYPES[type].color;
   bgColor = hexToRgbString(bgColor, colorMode == "light" ? 0.15 : 0.3);
 
-  const onClick = () => {
-    const res = markAsRead([id]);
-    if (res !== undefined) {
-      setAsRead(id);
+  const onClick = async () => {
+    const redirectionUrl = getRedirectionUrl();
+
+    if (redirectionUrl !== undefined) {
+      window.open(redirectionUrl);
     }
+
+    if (!read) {
+      const res = await markAsRead([id]);
+      if (res !== undefined) {
+        setAsRead(id);
+      }
+    }
+  };
+
+  const getRedirectionUrl = () => {
+    if (classroomId == undefined && itemId == undefined) {
+      return undefined;
+    }
+
+    if (type == 3 && classroomId !== undefined && itemId !== undefined) {
+      // Materials
+      return `${CLASSROOM_URL}materials/preview?classroom_id=${classroomId}&material_id=&${
+        itemId[0]
+      }&type=${actionPath[0] == "notes" ? "note" : "syllabus"}`;
+    }
+
+    return undefined;
   };
 
   return (
