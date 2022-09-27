@@ -13,7 +13,6 @@ import {
   NOTIFICATION_TYPES,
   OTHERS_COLOR,
 } from "../../constants/notifications";
-// import { markAsRead } from "../../lib/redux/actions/notificationActions";
 import { hexToRgbString } from "../../utils";
 import notification from "../../Icons/Notifications/notification";
 import { markAsRead } from "../../redux/actions/notificationActions";
