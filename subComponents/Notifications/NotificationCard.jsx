@@ -66,6 +66,9 @@ const NotificationCard = ({
     if (type == 3 && classroomId !== undefined && itemId !== undefined) {
       // Materials
       return `${CLASSROOM_URL}materials/preview?classroom_id=${classroomId}&material_id=${itemId[0]}&type=${actionPath[0]}`;
+    } else if (type == 2 && classroomId !== undefined) {
+      // Classroom Redirection
+      return `${CLASSROOM_URL}overview?classroom_id=${classroomId}`;
     }
 
     return undefined;
