@@ -65,9 +65,7 @@ const NotificationCard = ({
 
     if (type == 3 && classroomId !== undefined && itemId !== undefined) {
       // Materials
-      return `${CLASSROOM_URL}materials/preview?classroom_id=${classroomId}&material_id=&${
-        itemId[0]
-      }&type=${actionPath[0] == "notes" ? "note" : "syllabus"}`;
+      return `${CLASSROOM_URL}materials/preview?classroom_id=${classroomId}&material_id=${itemId[0]}&type=${actionPath[0]}`;
     }
 
     return undefined;
