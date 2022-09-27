@@ -72,7 +72,7 @@ const NotificationsList = () => {
       setMarkAllLoading(false);
     } catch (err) {
       setMarkAllLoading(false);
-      console.log("CIDD", err);
+      console.log(err);
     }
   };
 
