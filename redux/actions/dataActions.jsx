@@ -1,5 +1,5 @@
-import { apiCall } from "../../../src/lib/apiCall";
 import { FILE_API_URL } from "../../constants";
+import { apiCall } from "../../utils/apiCall";
 import {
   FETCHING_FILE_DOWNLOAD_URL_FAILED,
   FETCHING_FILE_DOWNLOAD_URL_SUCCESS,

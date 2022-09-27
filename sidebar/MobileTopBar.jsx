@@ -6,9 +6,10 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
+
 import HamburgerMenu from "../Icons/HamburgerMenu";
 import NotificationIcon from "../Icons/NotificationIcon";
-import NotificationPopup from "../subComponents/Notifications/NotificationPopup";
+import NotificationPopup from "../subComponents/Notifications/NotificationPopupMobile";
 import UserAvatar from "../subComponents/UserAvatar";
 
 const MobileTopBar = ({ onOpen }) => {
