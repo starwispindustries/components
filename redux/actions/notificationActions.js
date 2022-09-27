@@ -11,6 +11,7 @@ export const getNotifications = () => {
         });
         try {
             const notifications = await apiCall(MAIN_API_URL + 'notifications/pull')
+            notifications.sort((a, b) => a.payload?.created_at - b.payload?.created_at);
 
             if (notifications) {
                 dispatch({

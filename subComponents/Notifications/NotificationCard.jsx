@@ -7,7 +7,7 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import { format } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 
 import {
   NOTIFICATION_TYPES,
@@ -99,7 +99,9 @@ const NotificationCard = ({
 
         <HStack>
           <Text variant="h3" size="xs">
-            {date == undefined ? "Invalid Time" : format(date, "hh:mm a")}
+            {date == undefined
+              ? "Invalid Time"
+              : formatDistanceToNow(date, { addSuffix: true })}
           </Text>
           {classroomName != undefined && classroomName != null && (
             <>
