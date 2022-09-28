@@ -5,13 +5,13 @@ import { MAIN_URL } from '../constants/index';
 export function readCookie(name) {
   // use while development.
   const dummyUser = {
-    "token": "ddce6479-c184-4562-8f3e-31fcf4530dfd",
-    "username": "cs",
+    "token": "917b6076-e409-434d-9b56-43947efe8d84",
+    "username": "cf",
     "organization_id": "101",
-    "session_id": "9e5e35bb-c058-470c-b757-5fffaaf2c167",
-    "role_id": "6201106aaadbcc1442b4b15a"
+    "session_id": "162040f8-60ec-4838-9c98-2b47a5f82336",
+    "role_id": "62011052aadbcc1442b4b159"
   };
-  // return dummyUser[name];
+  return dummyUser[name];
 
   if (typeof document === 'undefined') return null;
 

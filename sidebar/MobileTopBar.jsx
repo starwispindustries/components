@@ -1,60 +1,57 @@
-import {
-  HStack,
-  IconButton,
-  Spacer,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { HStack, IconButton, Spacer, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
+import useProfile from "../hooks/useProfile";
 
 import HamburgerMenu from "../Icons/HamburgerMenu";
 import NotificationIcon from "../Icons/NotificationIcon";
 import NotificationPopup from "../subComponents/Notifications/NotificationPopupMobile";
 import UserAvatar from "../subComponents/UserAvatar";
+import { readCookie } from "../utils/apiCall";
 
 const MobileTopBar = ({ onOpen }) => {
-  const bg = useColorModeValue(
-    "backgrounds.light.e000",
-    "backgrounds.dark.e000"
-  );
+    const profile = useProfile();
+    const username = readCookie("username");
 
-  const [showNoti, setShowNoti] = useState(false);
+    const bg = useColorModeValue("backgrounds.light.e000", "backgrounds.dark.e000");
 
-  return (
-    <>
-      {showNoti && <NotificationPopup />}
+    const [showNoti, setShowNoti] = useState(false);
 
-      <HStack w="full" p="15px" bg={bg}>
-        <IconButton
-          icon={<HamburgerMenu />}
-          onClick={onOpen}
-          w="30px"
-          h="30px"
-          bg="transparent"
-          _hover={{ bg: "transparent" }}
-        />
+    return (
+        <>
+            {showNoti && <NotificationPopup />}
 
-        <Spacer />
+            <HStack w="full" p="15px" bg={bg}>
+                <IconButton
+                    icon={<HamburgerMenu />}
+                    onClick={onOpen}
+                    w="30px"
+                    h="30px"
+                    bg="transparent"
+                    _hover={{ bg: "transparent" }}
+                />
 
-        <HStack spacing={"10px"}>
-          <IconButton
-            icon={<NotificationIcon />}
-            w="30px"
-            h="30px"
-            bg="transparent"
-            _hover={{ bg: "transparent" }}
-            onClick={() => setShowNoti(!showNoti)}
-          />
+                <Spacer />
 
-          <UserAvatar
-            fullName={"Ciddarth Raaj"}
-            filekey="f474760d-4ee5-4f14-b93f-8871ab5735db"
-            size="xs"
-          />
-        </HStack>
-      </HStack>
-    </>
-  );
+                <HStack spacing={"10px"}>
+                    <IconButton
+                        icon={<NotificationIcon />}
+                        w="30px"
+                        h="30px"
+                        bg="transparent"
+                        _hover={{ bg: "transparent" }}
+                        onClick={() => setShowNoti(!showNoti)}
+                    />
+
+                    <UserAvatar
+                        fullName={profile?.full_name == undefined ? username : profile?.full_name}
+                        filekey={profile?.profile_key}
+                        size="xs"
+                    />
+                </HStack>
+            </HStack>
+        </>
+    );
 };
 
 export default MobileTopBar;
