@@ -13,6 +13,8 @@ import {
 	Divider,
 	useDisclosure,
 	Spacer,
+	PopoverTrigger,
+	Flex,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
@@ -24,6 +26,7 @@ import UserAvatar from "../subComponents/UserAvatar";
 import { readCookie } from "../utils/apiCall";
 import { classroom, lectures, main, settings, studentInfo } from "./IconsList";
 import MobileTopBar from "./MobileTopBar";
+import ProfilePopup from "./ProfilePopup";
 
 const ITEMS = [
 	{
@@ -110,7 +113,13 @@ const SidebarContent = ({ isDark }) => {
 				}
 			</VStack>
 
-			<UserAvatar filekey={profile?.profile_key} fullName={profile?.full_name == undefined ? username : profile?.full_name} borderRadius="10px" />
+			<ProfilePopup>
+				<PopoverTrigger>
+					<Flex>
+						<UserAvatar filekey={profile?.profile_key} fullName={profile?.full_name == undefined ? username : profile?.full_name} borderRadius="10px" />
+					</Flex>
+				</PopoverTrigger>
+			</ProfilePopup>
 		</VStack>
 	);
 };
