@@ -23,3 +23,13 @@ export const hexToRgbString = (hex, alpha = 1) => {
 export const dateToUnix = (date) => {
     return Math.floor(date.getTime() / 1000);
 };
+
+export const getFileExtension = (metadata) => {
+    if (metadata?._url) return "link";
+    return (
+        metadata?.filename?.split(".").pop() ||
+        metadata?.name?.split(".").pop() ||
+        metadata?.filepath?.split(".").pop() ||
+        metadata?.filekey?.split(".").pop()
+    ); //here fallback is given if file just selected but not upload in that case metadata will not be there
+};
