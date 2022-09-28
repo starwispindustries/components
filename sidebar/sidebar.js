@@ -116,7 +116,7 @@ const SidebarContent = ({ isDark }) => {
 			<ProfilePopup>
 				<PopoverTrigger>
 					<Flex>
-						<UserAvatar filekey={profile?.profile_key} fullName={profile?.full_name == undefined ? username : profile?.full_name} borderRadius="10px" />
+						<UserAvatar filekey={profile?.profile_key} fullName={profile?.full_name == undefined ? username : profile?.full_name} borderRadius="15px" />
 					</Flex>
 				</PopoverTrigger>
 			</ProfilePopup>

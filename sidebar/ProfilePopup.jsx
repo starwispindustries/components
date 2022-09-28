@@ -2,6 +2,7 @@ import React from "react";
 import {
   Box,
   Flex,
+  HStack,
   Popover,
   PopoverContent,
   Text,
@@ -16,6 +17,8 @@ import Logout from "../Icons/ProfileIcons/Logout";
 import Storage from "../Icons/ProfileIcons/Storage";
 import Link from "next/link";
 import { MAIN_URL } from "../constants";
+import useProfile from "../hooks/useProfile";
+import UserAvatar from "../subComponents/UserAvatar";
 
 const ProfilePopup = ({ children }) => {
   const bg = useColorModeValue("primary.light._000", "primary.dark._000");
@@ -35,6 +38,8 @@ const ProfilePopup = ({ children }) => {
           outline="none"
         >
           <VStack spacing={"20px"}>
+            <PopoverHeader />
+
             <Label
               LabelIcon={Profile}
               title="View Profile"
@@ -64,11 +69,6 @@ const ProfilePopup = ({ children }) => {
 };
 
 const Label = ({ title, LabelIcon, color = null, url = "", onClick }) => {
-  //   const iconColor = useColorModeValue(
-  //     "primary.light.e100",
-  //     "primary.dark.e100"
-  //   );
-
   const { colorMode } = useColorMode();
 
   const colorHex = color ?? (colorMode == "light" ? "#733D47" : "#BF9B9B");
@@ -81,14 +81,36 @@ const Label = ({ title, LabelIcon, color = null, url = "", onClick }) => {
         cursor={"pointer"}
         onClick={() => (url == "" ? onClick() : () => {})}
       >
-        <Box w="50px">
+        <Flex w="65px" justifyContent={"center"}>
           <LabelIcon color={colorHex} />
-        </Box>
+        </Flex>
         <Text w="full" color={colorHex}>
           {title}
         </Text>
       </Flex>
     </Link>
+  );
+};
+
+const PopoverHeader = () => {
+  const profile = useProfile();
+
+  console.log("CIDD", profile);
+
+  return (
+    <HStack w="full" spacing="20px">
+      <UserAvatar
+        fullName={profile?.full_name}
+        filekey={profile?.profile_key}
+        borderRadius={"15px"}
+      />
+      <VStack w="full" alignItems={"flex-start"} spacing="2px">
+        <Text size="lg" fontWeight={"bold"} noOfLines={2}>
+          {profile?.full_name}
+        </Text>
+        <Text size="xs">{profile?.username}</Text>
+      </VStack>
+    </HStack>
   );
 };
 
