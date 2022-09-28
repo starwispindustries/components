@@ -53,7 +53,7 @@ const ITEMS = [
 	{
 		id: 4,
 		title: "Settings",
-		url: MAIN_URL + "i",
+		url: MAIN_URL + "i/",
 		icon: settings
 	},
 ]
@@ -88,7 +88,7 @@ const SidebarContent = ({ isDark }) => {
 
 	const origin =
 		typeof window !== "undefined" && window.location.origin
-			? window.location.origin
+			? window.location.origin + "/"
 			: "";
 
 	return (
