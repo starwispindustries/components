@@ -97,6 +97,7 @@ const SidebarContent = ({ isDark }) => {
 				{
 					ITEMS.map(item => (
 						<CustomButton
+							key={item.url + "-key"}
 							path={item.url}
 							active={origin.includes(item.url)}
 							isDark={isDark}
