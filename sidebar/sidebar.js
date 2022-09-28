@@ -19,7 +19,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CLASSROOM_URL, LECTURES_URL, MAIN_URL, TIMELINE_URL } from "../constants";
+import useProfile from "../hooks/useProfile";
 import UserAvatar from "../subComponents/UserAvatar";
+import { readCookie } from "../utils/apiCall";
 import { classroom, lectures, main, settings, studentInfo } from "./IconsList";
 import MobileTopBar from "./MobileTopBar";
 
@@ -81,6 +83,9 @@ const CustomButton = ({ children, path, active, isDark }) => {
 };
 
 const SidebarContent = ({ isDark }) => {
+	const profile = useProfile()
+	const username = readCookie("username");
+
 	const origin =
 		typeof window !== "undefined" && window.location.origin
 			? window.location.origin
@@ -104,7 +109,7 @@ const SidebarContent = ({ isDark }) => {
 				}
 			</VStack>
 
-			<UserAvatar fullName={"Ciddarth Raaj"} borderRadius="10px" />
+			<UserAvatar filekey={profile?.profile_key} fullName={profile?.full_name == undefined ? username : profile?.full_name} borderRadius="10px" />
 		</VStack>
 	);
 };
