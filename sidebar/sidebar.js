@@ -12,13 +12,14 @@ import {
 	Center,
 	Divider,
 	useDisclosure,
+	Spacer,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 import { CLASSROOM_URL, LECTURES_URL, MAIN_URL, TIMELINE_URL } from "../constants";
+import UserAvatar from "../subComponents/UserAvatar";
 import { classroom, lectures, main, settings, studentInfo } from "./IconsList";
 import MobileTopBar from "./MobileTopBar";
 
@@ -80,27 +81,30 @@ const CustomButton = ({ children, path, active, isDark }) => {
 };
 
 const SidebarContent = ({ isDark }) => {
-	const router = useRouter();
 	const origin =
 		typeof window !== "undefined" && window.location.origin
 			? window.location.origin
 			: "";
 
 	return (
-		<VStack mt="29px" spacing="9px">
-			{
-				ITEMS.map(item => (
-					<CustomButton
-						path={item.url}
-						active={origin.includes(item.url)}
-						isDark={isDark}
-					>
-						<CustomIcon>
-							{item.icon}
-						</CustomIcon>
-					</CustomButton>
-				))
-			}
+		<VStack justifyContent={"space-between"} h="85%">
+			<VStack mt="29px" spacing="9px">
+				{
+					ITEMS.map(item => (
+						<CustomButton
+							path={item.url}
+							active={origin.includes(item.url)}
+							isDark={isDark}
+						>
+							<CustomIcon>
+								{item.icon}
+							</CustomIcon>
+						</CustomButton>
+					))
+				}
+			</VStack>
+
+			<UserAvatar fullName={"Ciddarth Raaj"} borderRadius="10px" />
 		</VStack>
 	);
 };
@@ -121,7 +125,7 @@ const Sidebar = ({ variant, isDark }) => {
 			p={5}
 			w="84px"
 			top={0}
-			h="100%"
+			h="100vh"
 			bg={bg}
 			zIndex={1}
 		>
