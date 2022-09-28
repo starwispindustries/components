@@ -124,7 +124,7 @@ export const fetchProfile = () => {
                 });
             }
         } catch (err) {
-            console.log("CIDD", err);
+            console.log(err);
             dispatch({
                 type: PROFILE_FETCH_FAILED,
             });
