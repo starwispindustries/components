@@ -19,11 +19,24 @@ import Link from "next/link";
 import { MAIN_URL } from "../constants";
 import useProfile from "../hooks/useProfile";
 import UserAvatar from "../subComponents/UserAvatar";
+import { logout } from "../helpers/authHelper";
+import { toast } from "react-toastify";
 
 const ProfilePopup = ({ children }) => {
   const bg = useColorModeValue("primary.light._000", "primary.dark._000");
 
-  const handleLogout = () => {};
+  const handleLogout = async () => {
+    try {
+      const res = await logout();
+      if (res?.success) {
+        toast.success("Logged out!");
+        window.location = "/l";
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Error Logging out!");
+    }
+  };
 
   return (
     <>
