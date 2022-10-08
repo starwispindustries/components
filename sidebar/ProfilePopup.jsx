@@ -108,8 +108,6 @@ const Label = ({ title, LabelIcon, color = null, url = "", onClick }) => {
 const PopoverHeader = () => {
   const profile = useProfile();
 
-  console.log("CIDD", profile);
-
   return (
     <HStack w="full" spacing="20px">
       <UserAvatar
