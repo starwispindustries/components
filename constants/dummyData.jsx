@@ -6,11 +6,12 @@
 //   role_id: "62011052aadbcc1442b4b159",
 // };
 // export const dummyUser = {
-//     token: "11e99e32-7918-4725-99f9-112f6be55434",
-//     username: "cs",
-//     organization_id: "101",
-//     session_id: "85079848-f044-4d86-8105-4e059abfffeb",
-//     role_id: "6201106aaadbcc1442b4b15a",
+//     "token": "b62ae9ee-33a1-493a-91bb-27de60486de3",
+//     "username": "r101",
+//     "when_accepted_terms": 0,
+//     "organization_id": "101",
+//     "session_id": "4aa69377-68cb-4561-9dd7-2f17e9f4a211",
+//     "role_id": "62011052aadbcc1442b4b159"
 // };
 
 export const dummyUser = undefined;
