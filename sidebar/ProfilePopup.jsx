@@ -40,7 +40,7 @@ const ProfilePopup = ({ children }) => {
 
   return (
     <>
-      <Popover isLazy placement="right-end">
+      <Popover isLazy>
         {children}
         <PopoverContent
           borderRadius={"20px"}
@@ -56,12 +56,12 @@ const ProfilePopup = ({ children }) => {
             <Label
               LabelIcon={Profile}
               title="View Profile"
-              url={`${MAIN_URL}i`}
+              url={`/i`}
             />
             <Label
               LabelIcon={Help}
               title="Help & Feedback"
-              url={`${MAIN_URL}i`} // Add proper redirection to FAQ
+              url={`/i?tab=FAQs`} // Add proper redirection to FAQ
             />
             <Label
               LabelIcon={Storage}
