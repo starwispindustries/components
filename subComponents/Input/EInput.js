@@ -98,9 +98,10 @@ const EInput = ({
 			rightIcon = isDisabled ? (
 				""
 			) : passwordVisible ? (
-				<ViewOffIcon />
-			) : (
+				
 				<ViewIcon />
+			) : (
+				<ViewOffIcon />
 			);
 			break;
 
