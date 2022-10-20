@@ -70,7 +70,7 @@ const CustomIcon = ({ children }) => {
 	);
 };
 
-const CustomButton = ({ children, path, active, isDark }) => {
+const CustomButton = ({ children, path, active, isDark, sidebar_variant }) => {
 	return (
 		<Link href={path}>
 			<Button
@@ -79,7 +79,7 @@ const CustomButton = ({ children, path, active, isDark }) => {
 				variant={active ? "active_sidebar_button" : "sidebar_button"}
 				size="sm"
 				_focus={{ outline: "none" }}
-				justifyContent={"flex-start"}
+				justifyContent={sidebar_variant == "sidebar" ? "center" : "flex-start"}
 			>
 				{children}
 			</Button>
@@ -87,7 +87,7 @@ const CustomButton = ({ children, path, active, isDark }) => {
 	);
 };
 
-const SidebarContent = ({ isDark, isDesktop }) => {
+const SidebarContent = ({ isDark, isDesktop,sidebar_variant }) => {
 	const profile = useProfile()
 	const username = readCookie("username");
 
@@ -107,6 +107,7 @@ const SidebarContent = ({ isDark, isDesktop }) => {
 							path={item.url}
 							active={origin.includes(item.url)}
 							isDark={isDark}
+							sidebar_variant={sidebar_variant}
 						>
 							<CustomIcon>
 								{item.icon}
@@ -167,7 +168,7 @@ const Sidebar = ({ variant, isDark, isDesktop }) => {
 							<EdvoraIcon width="140" height="25" />
 						</DrawerHeader>
 						<DrawerBody>
-							<SidebarContent onClick={onClose} isDark={isDark} isDesktop={isDesktop} />
+							<SidebarContent onClick={onClose} isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant}/>
 						</DrawerBody>
 					</DrawerContent>
 				</DrawerOverlay>
