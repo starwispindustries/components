@@ -6,13 +6,13 @@
 //   role_id: "62011052aadbcc1442b4b159",
 // };
 // export const dummyUser = {
-//     "token": "1b4bd6f5-ad13-4bf5-9699-6a29d2f995a7",
+//     "token": "01e3bffe-a45b-4eb8-806e-3cfde0a8b152",
 //     "username": "nero2",
 //     "when_accepted_terms": 991562412,
 //     "organization_id": "101",
-//     "session_id": "14f65925-8df1-42ca-81b2-5da0bb4ea5ac",
+//     "session_id": "64a01fbc-fd82-471c-8bb5-e06b8fc48ea8",
 //     "role_id": "62011052aadbcc1442b4b159",
-//     "theme": 0
+//     "theme": 2
 // };
 
 export const dummyUser = undefined;
