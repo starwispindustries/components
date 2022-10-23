@@ -23,6 +23,20 @@ export function readCookie(name) {
   }
   return null;
 }
+
+const handleErroCodes = (error) => {
+  const errorResponse = error?.response?.data;
+
+  if (errorResponse?.code) {
+    // if (error.code in ERROR_CODES) {
+    //   toast.error(ERROR_CODES[errorResponse.code])
+    // } else {
+    //   toast.error(errorResponse?.message)
+    // }
+    toast.error(errorResponse?.message)
+  }
+}
+
 /**
  * Makes an Edvora backend API call and handles errors. Accepts an *AxiosOption*
  * object to specify other parameters for the request. Automatically handles
@@ -60,6 +74,7 @@ export const apiCall = async (url, options, headers) => {
       if (error?.status == 498) {
         window.location.href = MAIN_URL + "l";
       }
+      handleErroCodes(err)
       if (err.message !== 'canceled') throw error;
     });
 

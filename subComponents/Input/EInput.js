@@ -38,7 +38,9 @@ const EInput = ({
 	maxW,
 	isDeletable = false,
 	onDelete,
+	marginZero,
 	h = "266px",
+	setRef,
 	...rest
 }) => {
 	const borderColor = useColorModeValue("#f0f0f0", "text.dark.disabled");
@@ -96,9 +98,10 @@ const EInput = ({
 			rightIcon = isDisabled ? (
 				""
 			) : passwordVisible ? (
-				<ViewOffIcon />
-			) : (
+				
 				<ViewIcon />
+			) : (
+				<ViewOffIcon />
 			);
 			break;
 
@@ -118,7 +121,7 @@ const EInput = ({
 	return (
 		<Box
 			position={"relative"}
-			mt={isDeletable ? 4 : 2}
+			mt={isDeletable ? 4 : marginZero ? 0 : 2}
 			w={isFullWidth ? "full" : "302px"}
 			maxW={maxW || "full"}
 		>
@@ -308,6 +311,7 @@ const EInput = ({
 							setIsFocused(value || false);
 							onBlur && onBlur(e);
 						}}
+						ref={setRef}
 						{...rest}
 					/>
 				)}

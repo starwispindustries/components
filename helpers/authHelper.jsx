@@ -5,6 +5,9 @@ export const logout = async () => {
   try {
     const res = await apiCall(AUTH_API_URL + "logout", {
       method: "post",
+      data: {
+        "token_str": []
+      }
     });
 
     if (res === undefined) {

@@ -33,3 +33,4 @@ export const getFileExtension = (metadata) => {
         metadata?.filekey?.split(".").pop()
     ); //here fallback is given if file just selected but not upload in that case metadata will not be there
 };
+

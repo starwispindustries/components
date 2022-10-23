@@ -18,6 +18,7 @@ const ESelectInput = ({
 	leftIcon,
 	rightIcon,
 	maxW,
+	marginZero,
 	...rest
 }) => {
 	return (
@@ -25,6 +26,7 @@ const ESelectInput = ({
 			position={"relative"}
 			w={isFullWidth ? "full" : "302px"}
 			maxW={maxW || "full"}
+			mt={ marginZero ? "0 !important" : "unset"}
 		>
 			<EInput
 				leftIcon={leftIcon}

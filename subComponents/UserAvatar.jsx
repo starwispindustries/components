@@ -9,6 +9,7 @@ import {
 import { getInitials } from "../utils";
 
 const UserAvatar = ({ filekey, fullName, ...props }) => {
+
   const dispatch = useDispatch();
   const metadata = useSelector((state) =>
     state?.commonData?.filesMetadata?.find((data) => data.filekey === filekey)

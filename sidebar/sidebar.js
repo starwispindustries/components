@@ -12,13 +12,14 @@ import {
 	Center,
 	Divider,
 	useDisclosure,
-	Spacer,
+	Text,
 	PopoverTrigger,
 	Flex,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
+import EdvoraIcon from "../../src/icons/EdvoraIcon";
 
 import { CLASSROOM_URL, LECTURES_URL, MAIN_URL, TIMELINE_URL } from "../constants";
 import useProfile from "../hooks/useProfile";
@@ -54,7 +55,7 @@ const ITEMS = [
 		icon: lectures
 	},
 	{
-		id: 4,
+		id: 5,
 		title: "Settings",
 		url: MAIN_URL + "i/",
 		icon: settings
@@ -69,15 +70,16 @@ const CustomIcon = ({ children }) => {
 	);
 };
 
-const CustomButton = ({ children, path, active, isDark }) => {
+const CustomButton = ({ children, path, active, isDark, sidebar_variant }) => {
 	return (
 		<Link href={path}>
 			<Button
-				w="100%"
+				w="90%"
 				key={"" + isDark}
 				variant={active ? "active_sidebar_button" : "sidebar_button"}
 				size="sm"
 				_focus={{ outline: "none" }}
+				justifyContent={sidebar_variant == "sidebar" ? "center" : "flex-start"}
 			>
 				{children}
 			</Button>
@@ -85,7 +87,7 @@ const CustomButton = ({ children, path, active, isDark }) => {
 	);
 };
 
-const SidebarContent = ({ isDark }) => {
+const SidebarContent = ({ isDark, isDesktop,sidebar_variant }) => {
 	const profile = useProfile()
 	const username = readCookie("username");
 
@@ -94,9 +96,10 @@ const SidebarContent = ({ isDark }) => {
 			? window.location.origin + "/"
 			: "";
 
+	const color = useColorModeValue("primary.dark._000", "primary.light._000")
 	return (
-		<VStack justifyContent={"space-between"} h="85%">
-			<VStack mt="29px" spacing="9px">
+		<VStack justifyContent={"space-between"} h="90%" w={"full"}>
+			<VStack mt="29px" spacing="9px" w={"full"}>
 				{
 					ITEMS.map(item => (
 						<CustomButton
@@ -104,10 +107,14 @@ const SidebarContent = ({ isDark }) => {
 							path={item.url}
 							active={origin.includes(item.url)}
 							isDark={isDark}
+							sidebar_variant={sidebar_variant}
 						>
 							<CustomIcon>
 								{item.icon}
 							</CustomIcon>
+							{!isDesktop && (
+								<Text ml={5} color={color}>{item?.title}</Text>
+							)}
 						</CustomButton>
 					))
 				}
@@ -115,7 +122,7 @@ const SidebarContent = ({ isDark }) => {
 
 			<ProfilePopup>
 				<PopoverTrigger>
-					<Flex>
+					<Flex alignSelf={"baseline"}>
 						<UserAvatar filekey={profile?.profile_key} fullName={profile?.full_name == undefined ? username : profile?.full_name} borderRadius="15px" />
 					</Flex>
 				</PopoverTrigger>
@@ -124,7 +131,7 @@ const SidebarContent = ({ isDark }) => {
 	);
 };
 
-const Sidebar = ({ variant, isDark }) => {
+const Sidebar = ({ variant, isDark, isDesktop }) => {
 	const bg = useColorModeValue(
 		"backgrounds.light.e000",
 		"backgrounds.dark.e000"
@@ -148,18 +155,20 @@ const Sidebar = ({ variant, isDark }) => {
 				<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
 			</Center>
 			<Divider borderColor={borderColor} />
-			<SidebarContent isDark={isDark} />
+			<SidebarContent isDark={isDark} isDesktop={isDesktop}/>
 		</Box>
 	) : (
 		<>
 			<MobileTopBar onOpen={onOpen} />
 			<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
 				<DrawerOverlay>
-					<DrawerContent>
+					<DrawerContent bg={bg}>
 						<DrawerCloseButton />
-						<DrawerHeader>Chakra-UI</DrawerHeader>
+						<DrawerHeader>
+							<EdvoraIcon width="140" height="25" />
+						</DrawerHeader>
 						<DrawerBody>
-							<SidebarContent onClick={onClose} isDark={isDark} />
+							<SidebarContent onClick={onClose} isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant}/>
 						</DrawerBody>
 					</DrawerContent>
 				</DrawerOverlay>
