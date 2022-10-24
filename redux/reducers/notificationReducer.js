@@ -1,4 +1,4 @@
-import { FETCHING_NOTIFICATIONS_STATUS, FETCHING_NOTIFICATIONS_SUCCESS, START_FETCHING_NOTIFICATIONS, IS_LOADING, IS_NOT_INITIATED, IS_SUCCESS } from '../actions/actionTypes';
+import { FETCHING_NOTIFICATIONS_STATUS, FETCHING_NOTIFICATIONS_SUCCESS, START_FETCHING_NOTIFICATIONS, IS_LOADING, UPDATE_NOTIFICATION, IS_SUCCESS } from '../actions/actionTypes';
 
 const DEFAULT_STATE = {
     notifications: [],
@@ -22,6 +22,19 @@ const NotificationReducer = (state = DEFAULT_STATE, action) => {
                 ...state,
                 fetchStatus: action.payload,
             };
+        case UPDATE_NOTIFICATION:
+            const update_notification_id = action.payload;
+            const new_notifications = [...state.notifications]
+            const index_of_new_notification = new_notifications.findIndex(n => n?._id == update_notification_id)
+
+            if (index_of_new_notification > -1) {
+                new_notifications[index_of_new_notification].read = true
+            }
+
+            return {
+                ...state,
+                notifications: new_notifications
+            }
         default:
             return state;
     }
