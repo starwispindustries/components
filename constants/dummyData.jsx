@@ -6,12 +6,12 @@
 //   role_id: "62011052aadbcc1442b4b159",
 // };
 // export const dummyUser = {
-//     "token": "4855409f-5103-43b0-b71e-993770cc8323",
-//     "username": "r101",
-//     "when_accepted_terms": 1666007320,
+//     "token": "a949f3f0-6c8f-4f76-ac38-1d2debec89a9",
+//     "username": "vergil2",
+//     "when_accepted_terms": 991562412,
 //     "organization_id": "101",
-//     "session_id": "a68e28fa-7cae-4d58-b69a-797cf8e06412",
-//     "role_id": "62011052aadbcc1442b4b159",
+//     "session_id": "86000a0a-e68e-44bd-9297-ef42feac0017",
+//     "role_id": "6201106aaadbcc1442b4b15a",
 //     "theme": 0
 // }
 
