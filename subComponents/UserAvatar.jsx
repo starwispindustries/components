@@ -32,13 +32,14 @@ const UserAvatar = ({ filekey, fullName, ...props }) => {
   }, [filekey, dispatch, metadata]);
 
   const bg = useColorModeValue("borders.light.e100", "borders.dark.e100");
-  const color = useColorModeValue("texts.light.e100", "texts.dark.e100");
+  const color = useColorModeValue("text.light.h3_captions", "text.dark.h3_captions");
 
+  console.log(color,'color')
   return (
     <Avatar
       bg={bg}
       icon={
-        <Text p={2} size={props?.size || "lg"} variant={color}>
+        <Text p={2} size={props?.size || "lg"} variant={'color'} color={color}>
           {getInitials(fullName)}
         </Text>
       }

@@ -1,6 +1,8 @@
+import { useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 
 function HamburgerMenu() {
+  const fill = useColorModeValue("#733D47", "#BF9B9B")
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +13,7 @@ function HamburgerMenu() {
     >
       <g clipPath="url(#clip0_10157_12410)">
         <path
-          fill="#733D47"
+          fill={fill}
           d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
         ></path>
       </g>
