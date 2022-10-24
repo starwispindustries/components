@@ -33,7 +33,7 @@ const ProfilePopup = ({ children }) => {
         window.location = "/l";
       }
     } catch (err) {
-      console.log(err);
+
       toast.error("Error Logging out!");
     }
   };

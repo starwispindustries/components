@@ -97,6 +97,7 @@ const SidebarContent = ({ isDark, isDesktop,sidebar_variant }) => {
 			: "";
 
 	const color = useColorModeValue("primary.dark._000", "primary.light._000")
+
 	return (
 		<VStack justifyContent={"space-between"} h="90%" w={"full"}>
 			<VStack mt="29px" spacing="9px" w={"full"}>
