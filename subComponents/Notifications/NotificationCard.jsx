@@ -99,7 +99,7 @@ const NotificationCard = ({
         </Text>
 
         <HStack>
-          <Text variant="h3" size="xs">
+          <Text variant="h3" size="xs" noOfLines={1} minW={"90px"}>
             {date == undefined
               ? "Invalid Time"
               : formatDistanceToNow(date, { addSuffix: true })}
@@ -107,7 +107,7 @@ const NotificationCard = ({
           {classroomName != undefined && classroomName != null && (
             <>
               <Text variant="h3">{"•"}</Text>
-              <Text variant="h3" size="xs">
+              <Text variant="h3" size="xs" noOfLines={1}>
                 {classroomName}
               </Text>
             </>

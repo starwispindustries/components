@@ -24,7 +24,7 @@ const MobileTopBar = ({ onOpen }) => {
             <HStack w="full" p="15px" bg={bg}>
                 <IconButton
                     icon={<HamburgerMenu />}
-                    onClick={onOpen}
+                    onClick={()=> {setShowNoti(false); onOpen();}}
                     w="30px"
                     h="30px"
                     bg="transparent"

@@ -9,6 +9,7 @@ import {
 import { getInitials } from "../utils";
 
 const UserAvatar = ({ filekey, fullName, ...props }) => {
+
   const dispatch = useDispatch();
   const metadata = useSelector((state) =>
     state?.commonData?.filesMetadata?.find((data) => data.filekey === filekey)
@@ -31,13 +32,13 @@ const UserAvatar = ({ filekey, fullName, ...props }) => {
   }, [filekey, dispatch, metadata]);
 
   const bg = useColorModeValue("borders.light.e100", "borders.dark.e100");
-  const color = useColorModeValue("texts.light.e100", "texts.dark.e100");
+  const color = useColorModeValue("text.light.h3_captions", "text.dark.h3_captions");
 
   return (
     <Avatar
       bg={bg}
       icon={
-        <Text p={2} size={props?.size || "lg"} variant={color}>
+        <Text p={2} size={props?.size || "lg"} variant={'color'} color={color}>
           {getInitials(fullName)}
         </Text>
       }

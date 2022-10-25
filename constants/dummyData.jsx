@@ -1,16 +1,11 @@
 // export const dummyUser = {
-//   token: "85c74daf-5377-47e6-94c0-8299e9ce517a",
-//   username: "cf",
-//   organization_id: "101",
-//   session_id: "7f567681-ee10-4f63-9fb2-5916b1ad658e",
-//   role_id: "62011052aadbcc1442b4b159",
-// };
-// export const dummyUser = {
-//     token: "2ac1072b-4505-48a9-801e-8a2add03b1a4",
-//     username: "rd0",
-//     organization_id: "101",
-//     session_id: "324d0a74-5479-4909-85ef-d1f43d89b527",
-//     role_id: "62011052aadbcc1442b4b159",
-// };
+//     "token": "65965279-9e2d-47b2-ac73-b7437233e4b2",
+//     "username": "rtu",
+//     "when_accepted_terms": 1658952663,
+//     "organization_id": "101",
+//     "session_id": "754ebeec-635d-4acc-b9d6-c62e934a250b",
+//     "role_id": "62011052aadbcc1442b4b159",
+//     "theme": 1
+// }
 
 export const dummyUser = undefined;
