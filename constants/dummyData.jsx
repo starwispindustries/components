@@ -5,7 +5,7 @@
 //     "organization_id": "101",
 //     "session_id": "754ebeec-635d-4acc-b9d6-c62e934a250b",
 //     "role_id": "62011052aadbcc1442b4b159",
-//     "theme": 1
+//     "theme": 0
 // }
 
 export const dummyUser = undefined;
