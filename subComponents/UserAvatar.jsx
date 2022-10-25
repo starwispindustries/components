@@ -34,7 +34,6 @@ const UserAvatar = ({ filekey, fullName, ...props }) => {
   const bg = useColorModeValue("borders.light.e100", "borders.dark.e100");
   const color = useColorModeValue("text.light.h3_captions", "text.dark.h3_captions");
 
-  console.log(color,'color')
   return (
     <Avatar
       bg={bg}
