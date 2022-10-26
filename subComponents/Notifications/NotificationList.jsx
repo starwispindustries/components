@@ -14,6 +14,7 @@ import {
   FETCHING_NOTIFICATIONS_STATUS,
   IS_LOADING,
   IS_NOT_INITIATED,
+  UPDATE_NOTIFICATION,
 } from "../../redux/actions/actionTypes";
 import {
   getNotifications,
@@ -38,16 +39,14 @@ const NotificationsList = () => {
   }, []);
 
   const setAsRead = (id) => {
-    let tmpNotification = notifications;
-    for (let i = 0; i < tmpNotification.length; i++) {
-      if (tmpNotification[i]._id === id) {
-        tmpNotification[i].read = true;
-        dispatch({
-          type: FETCHING_NOTIFICATIONS_STATUS,
-          payload: tmpNotification,
-        });
-        break;
-      }
+    if (id) {
+      dispatch({
+        type: UPDATE_NOTIFICATION,
+        payload: id,
+      });
+      dispatch({
+        type: FETCHING_NOTIFICATIONS_STATUS
+      });
     }
   };
 
@@ -87,7 +86,7 @@ const NotificationsList = () => {
       >
         <HStack spacing={"2px"}>
           <Text variant="h1" fontWeight={"700"}>{`Notifications`}</Text>
-          <Text variant="h1">{"(" + notifications.length + ")"}</Text>
+          <Text variant="h1">{"(" + notifications?.filter(n => n?.read == false)?.length + ")"}</Text>
         </HStack>
 
         <Button

@@ -5,7 +5,7 @@ import { createBreakpoints, darken, mode, transparentize, whiten } from "@chakra
 import { extendTheme } from "@chakra-ui/react";
 
 const config = {
-    initialColorMode: "light",
+    initialColorMode: "system",
     useSystemColorMode: true,
 };
 
@@ -62,12 +62,14 @@ const theme = extendTheme({
                 e100: "#F4F4F4",
                 e200: "#F7F7F7",
                 e300: "#EFEFEF",
+                e400: "#FAFAFA"
             },
             dark: {
                 e000: "#000000",
                 e100: "#101010",
                 e200: "#202020",
                 e300: "#171717",
+                e400: "#171717"
             },
         },
         borders: {
@@ -223,6 +225,7 @@ const theme = extendTheme({
                 "3xl": {
                     fontSize: "24px",
                     lineHeight: "29px",
+                    fontWeight: 700
                 },
                 "4xl": {
                     fontSize: "28px",
