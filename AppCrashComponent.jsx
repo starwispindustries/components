@@ -13,7 +13,6 @@ const AppCrashComponent = () => {
     };
 
     const testConnection = () => {
-        console.log("test connection");
     };
 
     return (
