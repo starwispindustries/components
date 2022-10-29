@@ -56,12 +56,12 @@ const ProfilePopup = ({ children }) => {
             <Label
               LabelIcon={Profile}
               title="View Profile"
-              url={`/i`}
+              url={`${MAIN_URL}i`}
             />
             <Label
               LabelIcon={Help}
               title="Help & Feedback"
-              url={`/i?tab=FAQs`} // Add proper redirection to FAQ
+              url={`${MAIN_URL}i?tab=FAQs`} // Add proper redirection to FAQ
             />
             <Label
               LabelIcon={Storage}
@@ -116,7 +116,7 @@ const PopoverHeader = () => {
         borderRadius={"15px"}
       />
       <VStack w="full" alignItems={"flex-start"} spacing="2px">
-        <Text size="lg" fontWeight={"bold"} noOfLines={2}>
+        <Text size="lg" fontWeight={"bold"} noOfLines={1} wordBreak={"break-all"}>
           {profile?.full_name}
         </Text>
         <Text size="xs">{profile?.username}</Text>
