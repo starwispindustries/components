@@ -1,11 +1,10 @@
 // export const dummyUser = {
-//     "token": "65965279-9e2d-47b2-ac73-b7437233e4b2",
+//     "token": "d1c682d5-ff7a-4129-9047-2a7c89a83af5",
 //     "username": "rtu",
 //     "when_accepted_terms": 1658952663,
 //     "organization_id": "101",
-//     "session_id": "754ebeec-635d-4acc-b9d6-c62e934a250b",
+//     "session_id": "28548219-2a8e-4816-bd89-49b8fd579114",
 //     "role_id": "62011052aadbcc1442b4b159",
-//     "theme": 1
+//     "theme": 0
 // }
-
 export const dummyUser = undefined;

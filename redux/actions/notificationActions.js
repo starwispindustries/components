@@ -25,7 +25,6 @@ export const getNotifications = () => {
                 });
             }
         } catch (err) {
-            console.log(err)
             dispatch({
                 type: FETCHING_NOTIFICATIONS_STATUS,
                 payload: IS_FAILED
