@@ -7,5 +7,4 @@
 //     "role_id": "62011052aadbcc1442b4b159",
 //     "theme": 1
 // }
-
 export const dummyUser = undefined;

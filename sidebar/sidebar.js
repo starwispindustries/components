@@ -57,8 +57,9 @@ const ITEMS = [
 	{
 		id: 5,
 		title: "Settings",
-		url: MAIN_URL + "i/",
-		icon: settings
+		url: MAIN_URL + "i",
+		icon: settings,
+		homeSettings: true,
 	},
 ]
 
@@ -71,12 +72,13 @@ const CustomIcon = ({ children }) => {
 };
 
 const CustomButton = ({ children, path, active, isDark, sidebar_variant }) => {
+	console.log(sidebar_variant,'sidebar')
 	return (
 		<Link href={path}>
 			<Button
 				w="90%"
 				key={"" + isDark}
-				variant={active ? "active_sidebar_button" : "sidebar_button"}
+				variant={ active ? "active_sidebar_button" : "sidebar_button"}
 				size="sm"
 				_focus={{ outline: "none" }}
 				justifyContent={sidebar_variant == "sidebar" ? "center" : "flex-start"}
@@ -87,7 +89,7 @@ const CustomButton = ({ children, path, active, isDark, sidebar_variant }) => {
 	);
 };
 
-const SidebarContent = ({ isDark, isDesktop,sidebar_variant }) => {
+const SidebarContent = ({ isDark, isDesktop, sidebar_variant }) => {
 	const profile = useProfile()
 	const username = readCookie("username");
 
@@ -97,27 +99,35 @@ const SidebarContent = ({ isDark, isDesktop,sidebar_variant }) => {
 			: "";
 
 	const color = useColorModeValue("primary.dark._000", "primary.light._000")
+	const selectedColor = useColorModeValue("primary.light._000", "primary.dark._000")
 
 	return (
 		<VStack justifyContent={"space-between"} h="90%" w={"full"}>
 			<VStack mt="29px" spacing="9px" w={"full"}>
 				{
-					ITEMS.map(item => (
-						<CustomButton
-							key={item.url + "-key"}
-							path={item.url}
-							active={origin.includes(item.url)}
-							isDark={isDark}
-							sidebar_variant={sidebar_variant}
-						>
-							<CustomIcon>
-								{item.icon}
-							</CustomIcon>
-							{!isDesktop && (
-								<Text ml={5} color={color}>{item?.title}</Text>
-							)}
-						</CustomButton>
-					))
+					ITEMS.map(item => {
+						const pathname = typeof window != 'undefined' ?? window.location.pathname 
+						const isActive = origin.includes(item.url) && pathname != "/i"
+						const isSettings = item?.homeSettings
+						const active = isSettings && pathname == "/i" ? isSettings : isActive
+
+						return (
+							<CustomButton
+								key={item.url + "-key"}
+								path={item.url}
+								active={active}
+								isDark={isDark}
+								sidebar_variant={sidebar_variant}
+							>
+								<CustomIcon>
+									{item.icon}
+								</CustomIcon>
+								{!isDesktop && (
+									<Text ml={5} color={ active ? selectedColor : color}>{item?.title}</Text>
+								)}
+							</CustomButton>
+						)
+					})
 				}
 			</VStack>
 
@@ -156,7 +166,7 @@ const Sidebar = ({ variant, isDark, isDesktop }) => {
 				<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
 			</Center>
 			<Divider borderColor={borderColor} />
-			<SidebarContent isDark={isDark} isDesktop={isDesktop}/>
+			<SidebarContent isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant} />
 		</Box>
 	) : (
 		<>
@@ -169,7 +179,7 @@ const Sidebar = ({ variant, isDark, isDesktop }) => {
 							<EdvoraIcon width="140" height="25" />
 						</DrawerHeader>
 						<DrawerBody>
-							<SidebarContent onClick={onClose} isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant}/>
+							<SidebarContent onClick={onClose} isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant} />
 						</DrawerBody>
 					</DrawerContent>
 				</DrawerOverlay>

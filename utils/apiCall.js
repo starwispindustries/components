@@ -71,9 +71,9 @@ export const apiCall = async (url, options, headers) => {
       const error = new Error(err);
       error.status = err.response?.status;
       // for login error
-      if (error?.status == 498) {
-        window.location.href = MAIN_URL + "l";
-      }
+      // if (error?.status == 498) {
+      //   window.location.href = MAIN_URL + "l";
+      // }
       handleErroCodes(err)
       if (err.message !== 'canceled') throw error;
     });
