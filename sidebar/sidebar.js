@@ -72,6 +72,7 @@ const CustomIcon = ({ children }) => {
 };
 
 const CustomButton = ({ children, path, active, isDark, sidebar_variant }) => {
+	console.log(sidebar_variant,'sidebar')
 	return (
 		<Link href={path}>
 			<Button
@@ -165,7 +166,7 @@ const Sidebar = ({ variant, isDark, isDesktop }) => {
 				<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
 			</Center>
 			<Divider borderColor={borderColor} />
-			<SidebarContent isDark={isDark} isDesktop={isDesktop} />
+			<SidebarContent isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant} />
 		</Box>
 	) : (
 		<>
