@@ -1,4 +1,4 @@
-// export const dummyUser = {
+// export const dummyUser ={
 //     "token": "c8f5af19-a9b9-4933-a16f-9253d094d2f9",
 //     "username": "Ritik_Sharma",
 //     "when_accepted_terms": 1667189686,
