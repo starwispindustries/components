@@ -72,7 +72,6 @@ const CustomIcon = ({ children }) => {
 };
 
 const CustomButton = ({ children, path, active, isDark, sidebar_variant }) => {
-	console.log(sidebar_variant,'sidebar')
 	return (
 		<Link href={path}>
 			<Button
