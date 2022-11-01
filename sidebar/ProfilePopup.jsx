@@ -30,7 +30,7 @@ const ProfilePopup = ({ children }) => {
       const res = await logout();
       if (res?.success) {
         toast.success("Logged out!");
-        window.location = "/l";
+        window.location = MAIN_URL+"l";
       }
     } catch (err) {
 
