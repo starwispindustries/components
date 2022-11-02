@@ -1,10 +1,10 @@
 // export const dummyUser = {
-//     "token": "0541b3ba-46c4-4380-82f2-50b4a941fc33",
-//     "username": "Ritik_Sharma",
-//     "when_accepted_terms": 1667189686,
+//     "token": "be2d24bf-fd86-4598-9011-a4554843c374",
+//     "username": "nero2",
+//     "when_accepted_terms": 991562412,
 //     "organization_id": "101",
-//     "session_id": "ccedc461-ead5-42e4-8395-e45a2d031bda",
+//     "session_id": "81263f74-080e-4f5d-b861-65aa6a14c0a0",
 //     "role_id": "62011052aadbcc1442b4b159",
-//     "theme": 2
+//     "theme": 0
 // }
 export const dummyUser = undefined;
