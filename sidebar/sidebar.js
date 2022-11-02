@@ -105,7 +105,7 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant }) => {
 			<VStack mt="29px" spacing="9px" w={"full"}>
 				{
 					ITEMS.map(item => {
-						const pathname = typeof window != 'undefined' ?? window.location.pathname 
+						const pathname = typeof window != 'undefined' ? window.location.pathname : '' 
 						const isActive = origin.includes(item.url) && pathname != "/i"
 						const isSettings = item?.homeSettings
 						const active = isSettings && pathname == "/i" ? isSettings : isActive
