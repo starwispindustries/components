@@ -94,7 +94,7 @@ const NotificationCard = ({
       />
 
       <VStack w="full" alignItems={"flex-start"}>
-        <Text size="sm" noOfLines={2}>
+        <Text size="sm" noOfLines={2} wordBreak={"break-all"}>
           {content}
         </Text>
 
