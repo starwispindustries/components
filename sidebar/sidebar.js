@@ -101,7 +101,7 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant }) => {
 	const selectedColor = useColorModeValue("primary.light._000", "primary.dark._000")
 
 	return (
-		<VStack justifyContent={"space-between"} h="90%" w={"full"}>
+		<VStack justifyContent={"space-between"} w={"full"}>
 			<VStack mt="29px" spacing="9px" w={"full"}>
 				{
 					ITEMS.map(item => {
@@ -132,7 +132,7 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant }) => {
 
 			<ProfilePopup>
 				<PopoverTrigger>
-					<Flex alignSelf={"baseline"}>
+					<Flex alignSelf={"baseline"} position={"absolute"} bottom={8}>
 						<UserAvatar filekey={profile?.profile_key} fullName={profile?.full_name == undefined ? username : profile?.full_name} borderRadius="15px" />
 					</Flex>
 				</PopoverTrigger>
@@ -160,6 +160,7 @@ const Sidebar = ({ variant, isDark, isDesktop }) => {
 			h="100vh"
 			bg={bg}
 			zIndex={1}
+			position={"relative"}
 		>
 			<Center w="full" h="54px" mb="5">
 				<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
