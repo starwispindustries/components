@@ -16,7 +16,9 @@ import {
 import { hexToRgbString } from "../../utils";
 import notification from "../../Icons/Notifications/notification";
 import { markAsRead } from "../../redux/actions/notificationActions";
-import { CLASSROOM_URL } from "../../constants";
+import { CLASSROOM_API_URL, CLASSROOM_URL, LECTURES_URL, TIMELINE_URL } from "../../constants";
+import { apiCall } from "../../utils/apiCall";
+import { INTERACT_POLLS, UPDATE_CLASS_ASSIGNMENTS, UPDATE_CLASS_POLLS } from "../../../src/constants";
 
 const NotificationCard = ({
   id,
@@ -29,6 +31,7 @@ const NotificationCard = ({
   setAsRead,
   actionPath,
   itemId,
+  item,
 }) => {
   const { colorMode } = useColorMode();
 
@@ -44,6 +47,7 @@ const NotificationCard = ({
   bgColor = hexToRgbString(bgColor, colorMode == "light" ? 0.15 : 0.3);
 
   const onClick = async () => {
+    console.log('clickined')
     const redirectionUrl = getRedirectionUrl();
 
     if (redirectionUrl !== undefined) {
@@ -63,12 +67,163 @@ const NotificationCard = ({
       return undefined;
     }
 
-    if (type == 3 && classroomId !== undefined && itemId !== undefined) {
-      // Materials
-      return `${CLASSROOM_URL}materials/preview?classroom_id=${classroomId}&material_id=${itemId[0]}&type=${actionPath[0]}`;
-    } else if (type == 2 && classroomId !== undefined) {
-      // Classroom Redirection
-      return `${CLASSROOM_URL}overview?classroom_id=${classroomId}`;
+    const { payload } = item;
+
+    if (payload?.kind >= 0) {
+      switch (payload?.kind) {
+        case 0:
+          const classroom_id = payload?.classroom_id;
+
+          const item_id = payload?.item_id;
+          const action_path = payload?.action_path;
+
+          let overview_attendance;
+          if (action_path?.includes("overview") && action_path?.includes("attendance")) {
+            overview_attendance = true
+          }
+
+          // overview attendance
+          if (classroom_id && overview_attendance) {
+            return `${TIMELINE_URL}/attendance/overview?classroom_id=${classroom_id}`
+          }
+
+          break;
+
+        case 1: {
+          // for classroom/post 
+          const classroom_id = payload?.classroom_id;
+
+          const item_id = payload?.item_id;
+          const action_path = payload?.action_path;
+
+          // feed post
+          const post_id = item_id[0];
+
+          let feed_comments;
+          if (action_path?.includes("comments")) {
+            feed_comments = true;
+          }
+
+          // for feed comments
+          if (feed_comments && classroom_id && post_id) {
+            return `${CLASSROOM_URL}feed/post?classroom_id=${classroom_id}&post_id=${post_id}`
+          }
+
+          // for feed post
+          if (classroom_id && post_id) {
+            return `${CLASSROOM_URL}feed/post?classroom_id=${classroom_id}&post_id=${post_id}`
+          }
+
+          break;
+        }
+
+        case 2: {
+          // for classroom/member 
+          const classroom_id = payload?.classroom_id;
+
+          // When member is added
+          if (classroom_id) {
+            return `${CLASSROOM_URL}overview?classroom_id=${classroom_id}`;
+          }
+          break
+        }
+
+        case 3: {
+          // for classroom/materials 
+          const classroom_id = payload?.classroom_id;
+          const item_id = payload?.item_id;
+
+          const material_id = item_id[0];
+          const material_type = item_id[0];
+
+          if (classroom_id && material_id && material_type) {
+            return `${CLASSROOM_URL}materials/preview?classroom_id=${classroomId}&material_id=${material_id}&type=${material_type}`;
+          } else {
+            return `${CLASSROOM_URL}materials?classroom_id=${classroom_id}`
+          }
+        }
+
+        case 4: {
+          // for classroom/assignment 
+          const classroom_id = payload?.classroom_id;
+          const item_id = payload?.item_id;
+
+          const assingment_id = item_id[0];
+
+          return `${CLASSROOM_URL}assignments/preview?classroom_id=${classroom_id}&assignment_id=${assingment_id}`
+        }
+
+        case 5: {
+          // for classroom/poll
+          const classroom_id = payload?.classroom_id;
+          const item_id = payload?.item_id;
+
+          // global permissions
+          const { permissions } = apiCall(CLASSROOM_API_URL + 'permissions/self', {}, { 'Classroom-Id': classroom_id })
+
+          const poll_id = item_id[0]
+
+          if (permissions?.includes(UPDATE_CLASS_POLLS) && poll_id) {
+            return `${CLASSROOM_URL}polls/preview?classroom_id=${classroom_id}&poll_id=${poll_id}`
+          }
+
+          if (permissions?.includes(INTERACT_POLLS) && poll_id) {
+            return `${CLASSROOM_URL}polls/submit?classroom_id=${classroom_id}&poll_id=${poll_id}`
+          }
+
+          break
+        }
+
+        case 6: {
+          // for classroom/draft
+          const classroom_id = payload?.classroom_id;
+          const item_id = payload?.item_id;
+
+          break
+        }
+        case 7: {
+          // for classroom/meet
+          const classroom_id = payload?.classroom_id;
+          const item_id = payload?.item_id;
+
+          break
+        }
+        case 8: {
+          // for classroom/timeline
+          const classroom_id = payload?.classroom_id;
+          const item_id = payload?.item_id;
+
+          return `${TIMELINE_URL}`
+        }
+        case 9: {
+          // for classroom/attendance
+          const classroom_id = payload?.classroom_id;
+          const item_id = payload?.item_id;
+
+          // if (classroom_id) {
+          //   return `${TIMELINE_URL}attendance/overview?classroom_id=${classroom_id}`
+          // }
+          return `${TIMELINE_URL}attendance`
+        }
+        case 10: {
+          // for classroom/lectures
+          const classroom_id = payload?.classroom_id;
+          const item_id = payload?.item_id;
+
+          if (classroom_id) {
+            return `${LECTURES_URL}overview?classroom_id=${classroom_id}`
+          }
+          return `${LECTURES_URL}`
+        }
+        case 11: {
+          // for classroom/alert
+          break
+        }
+
+
+        default:
+          break;
+      }
     }
 
     return undefined;
