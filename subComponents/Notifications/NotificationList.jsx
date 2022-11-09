@@ -119,6 +119,7 @@ const NotificationsList = () => {
         ) : (
           notifications.map((item) => (
             <NotificationCard
+              item={item}
               key={item._id}
               id={item._id}
               content={item.payload?.title}
