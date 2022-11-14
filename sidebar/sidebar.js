@@ -79,8 +79,8 @@ const CustomIcon = ({ children }) => {
 
 const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant }) => {
 	return (
-		<Link href={path}>
-			<Tooltip label={sidebar_variant == "sidebar" ? tooltip : ""} aria-label='A tooltip' placement='right'>
+		<Tooltip label={sidebar_variant == "sidebar" ? tooltip : ""} aria-label='A tooltip' placement='right'>
+			<Link href={path}>
 				<Button
 					w="90%"
 					key={"" + isDark}
@@ -91,8 +91,8 @@ const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant
 				>
 					{children}
 				</Button>
-			</Tooltip>
-		</Link>
+			</Link>
+		</Tooltip>
 	);
 };
 
