@@ -11,10 +11,6 @@ export const AUTH_API_URL =
   process.env.REACT_APP_AUTH_API_URL || "https://auth.api.edvora.me/";
 export const FILE_API_URL =
   process.env.REACT_APP_FILE_API_URL || "https://files.api.edvora.me/";
-export const ENGINE_API_URL =
-  process.env.REACT_APP_ROLES_API_URL || "https://engine.api.edvora.me/";
-export const TOKEN_API_URL =
-  process.env.REACT_APP_TOKEN_API_URL || "https://tokens.api.edvora.me/";
 
 export const MAIN_URL =
   process.env.REACT_APP_MAIN_URL || "https://main.edvora.me/";
