@@ -15,6 +15,7 @@ import {
 	Text,
 	PopoverTrigger,
 	Flex,
+	Tooltip,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
@@ -34,25 +35,29 @@ const ITEMS = [
 		id: 1,
 		title: "Home",
 		url: MAIN_URL,
-		icon: main
+		icon: main,
+		tooltip: "Dashboard"
 	},
 	{
 		id: 2,
 		title: "Classroom",
 		url: CLASSROOM_URL,
-		icon: classroom
+		icon: classroom,
+		tooltip: "Classrooms"
 	},
 	{
 		id: 3,
 		title: "Student Info",
 		url: TIMELINE_URL,
-		icon: studentInfo
+		icon: studentInfo,
+		tooltip: "Timetable"
 	},
 	{
 		id: 4,
 		title: "Lectures",
 		url: LECTURES_URL,
-		icon: lectures
+		icon: lectures,
+		tooltip: "Lectures"
 	},
 	{
 		id: 5,
@@ -60,6 +65,7 @@ const ITEMS = [
 		url: MAIN_URL + "i",
 		icon: settings,
 		homeSettings: true,
+		tooltip: "Settings",
 	},
 ]
 
@@ -71,20 +77,22 @@ const CustomIcon = ({ children }) => {
 	);
 };
 
-const CustomButton = ({ children, path, active, isDark, sidebar_variant }) => {
+const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant }) => {
 	return (
-		<Link href={path}>
-			<Button
-				w="90%"
-				key={"" + isDark}
-				variant={ active ? "active_sidebar_button" : "sidebar_button"}
-				size="sm"
-				_focus={{ outline: "none" }}
-				justifyContent={sidebar_variant == "sidebar" ? "center" : "flex-start"}
-			>
-				{children}
-			</Button>
-		</Link>
+		<Tooltip label={sidebar_variant == "sidebar" ? tooltip : ""} aria-label='A tooltip' placement='right'>
+			<Link href={path}>
+				<Button
+					w="90%"
+					key={"" + isDark}
+					variant={active ? "active_sidebar_button" : "sidebar_button"}
+					size="sm"
+					_focus={{ outline: "none" }}
+					justifyContent={sidebar_variant == "sidebar" ? "center" : "flex-start"}
+				>
+					{children}
+				</Button>
+			</Link>
+		</Tooltip>
 	);
 };
 
@@ -105,7 +113,7 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant }) => {
 			<VStack mt="29px" spacing="9px" w={"full"}>
 				{
 					ITEMS.map(item => {
-						const pathname = typeof window != 'undefined' ? window.location.pathname : '' 
+						const pathname = typeof window != 'undefined' ? window.location.pathname : ''
 						const isActive = origin.includes(item.url) && pathname != "/i"
 						const isSettings = item?.homeSettings
 						const active = isSettings && pathname == "/i" ? isSettings : isActive
@@ -117,12 +125,13 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant }) => {
 								active={active}
 								isDark={isDark}
 								sidebar_variant={sidebar_variant}
+								tooltip={item?.tooltip}
 							>
 								<CustomIcon>
 									{item.icon}
 								</CustomIcon>
 								{!isDesktop && (
-									<Text ml={5} color={ active ? selectedColor : color}>{item?.title}</Text>
+									<Text ml={5} color={active ? selectedColor : color}>{item?.title}</Text>
 								)}
 							</CustomButton>
 						)
