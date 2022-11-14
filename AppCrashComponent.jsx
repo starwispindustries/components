@@ -1,6 +1,7 @@
 import { Box, HStack, Link, Stack, Text, VStack, useColorModeValue } from "@chakra-ui/react";
 
 import React from "react";
+import { EDVORA_URL } from "./constants";
 
 const AppCrashComponent = () => {
     const bgColor = useColorModeValue("backgrounds.light.e000", "backgrounds.dark.e000");
@@ -69,13 +70,13 @@ const AppCrashComponent = () => {
                         </Text>
                     </HStack>
                     <Text size={"lg"} variant={"cblackwhite"} fontWeight={400}>
-                        <Link href={"https://www.edvora.com/help"}>
+                        <Link href={`${EDVORA_URL}/help`}>
                             <Text color={"blue.e100"} as={"span"}>
                                 Check our FAQs section for more details
                             </Text>
                         </Link>{" "}
                         or{" "}
-                        <Link href={"https://www.edvora.com/contact"}>
+                        <Link href={`${EDVORA_URL}/contact`}>
                             <Text color={"blue.e100"} as={"span"}>
                                 drop us a line.
                             </Text>

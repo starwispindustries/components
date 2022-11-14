@@ -1,3 +1,5 @@
+
+//ENV VARIABLES ================================================================================================================
 export const CLASSROOM_API_URL =
   process.env.REACT_APP_CLASSROOM_API_URL ||
   "https://classrooms.api.edvora.me/";
@@ -26,13 +28,9 @@ export const LECTURES_URL =
 export const AGORA_APP_ID =
   process.env.REACT_APP_AGORA_APP_ID || "d7317e76e2374323823ada6aabcd8640";
 
-export const RECORDING_BUCKET_NAME =
-  process.env.REACT_APP_RECORDING_BUCKET_NAME || "";
-export const RECORDING_BUCKET_ACCESS_KEY =
-  process.env.REACT_APP_RECORDING_BUCKET_ACCESS_KEY || "";
-export const RECORDING_BUCKET_SECRET_KEY =
-  process.env.REACT_APP_RECORDING_BUCKET_SECRET_KEY || "";
+  export const EDVORA_URL = process.env.REACT_APP_EDVORA_URL || 'https://www.edvora.com';
 
+// ================================================================================================================================
 
 // export const SUBSCRIPTION_NOT_FOUND = 201
 // export const ROLE_NOT_FOUND = 202
