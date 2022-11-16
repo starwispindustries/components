@@ -7,6 +7,7 @@ export const CLASSROOM_API_URL =
   "https://classrooms.api.edvora.me/";
 export const TIMELINE_API_URL =
   publicRuntimeConfig.REACT_APP_TIMELINE_API_URL || "https://timetable.api.edvora.me/";
+export const TIME_TABLE_API_URL = publicRuntimeConfig.REACT_APP_TIMELINE_API_URL || "https://timetable.api.edvora.me/";
 export const MAIN_API_URL =
   publicRuntimeConfig.REACT_APP_MAIN_API_URL || "https://main.api.edvora.me/";
 export const AUTH_API_URL =
