@@ -16,10 +16,12 @@ import {
 	PopoverTrigger,
 	Flex,
 	Tooltip,
+	Link,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import EdvoraIcon from "../../src/icons/EdvoraIcon";
 
 import { CLASSROOM_URL, LECTURES_URL, MAIN_URL, TIMELINE_URL } from "../constants";
@@ -78,9 +80,10 @@ const CustomIcon = ({ children }) => {
 };
 
 const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant }) => {
+
 	return (
-		<Tooltip label={sidebar_variant == "sidebar" ? tooltip : ""} aria-label='A tooltip' placement='right'>
-			<Link href={path}>
+		<Tooltip label={sidebar_variant == "sidebar" ? tooltip : ""} aria-label='A tooltip' placement='right' >
+			<Link href={path} w={"full"}>
 				<Button
 					w="90%"
 					key={"" + isDark}
