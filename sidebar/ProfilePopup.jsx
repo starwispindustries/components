@@ -8,6 +8,7 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
+  useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 
@@ -25,6 +26,8 @@ import { toast } from "react-toastify";
 const ProfilePopup = ({ children }) => {
   const bg = useColorModeValue("primary.light._000", "primary.dark._000");
 
+  const { isOpen, onClose, onOpen } = useDisclosure()
+
   const handleLogout = async () => {
     try {
       const res = await logout();
@@ -40,7 +43,7 @@ const ProfilePopup = ({ children }) => {
 
   return (
     <>
-      <Popover isLazy>
+      <Popover isLazy onOpen={onOpen} onClose={onClose} isOpen={isOpen}>
         {children}
         <PopoverContent
           borderRadius={"20px"}
@@ -57,16 +60,19 @@ const ProfilePopup = ({ children }) => {
               LabelIcon={Profile}
               title="View Profile"
               url={`${MAIN_URL}i?tab=Account`}
+              onClick={onClose}
             />
             <Label
               LabelIcon={Help}
               title="Help & Feedback"
               url={`${MAIN_URL}i?tab=FAQs`} // Add proper redirection to FAQ
+              onClick={onClose}
             />
             <Label
               LabelIcon={Storage}
               title="Storage"
               url={`${MAIN_URL}storage`}
+              onClick={onClose}
             />
             <Label
               LabelIcon={Logout}
@@ -81,7 +87,7 @@ const ProfilePopup = ({ children }) => {
   );
 };
 
-const Label = ({ title, LabelIcon, color = null, url = "", onClick }) => {
+const Label = ({ title, LabelIcon, color = null, url = "", onClick = () => {} }) => {
   const { colorMode } = useColorMode();
 
   const colorHex = color ?? (colorMode == "light" ? "#733D47" : "#BF9B9B");
@@ -92,7 +98,7 @@ const Label = ({ title, LabelIcon, color = null, url = "", onClick }) => {
         w="full"
         gap="20px"
         cursor={"pointer"}
-        onClick={() => (url == "" ? onClick() : () => {})}
+        onClick={() => onClick()}
       >
         <Flex w="65px" justifyContent={"center"}>
           <LabelIcon color={colorHex} />
