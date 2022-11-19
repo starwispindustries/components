@@ -52,7 +52,7 @@ const ITEMS = [
 		title: "Student Info",
 		url: TIMELINE_URL,
 		icon: studentInfo,
-		tooltip: "Timetable"
+		tooltip: "Timeline"
 	},
 	{
 		id: 4,
