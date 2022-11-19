@@ -68,6 +68,7 @@ const NotificationsList = () => {
         .map((item) => item._id);
 
       await markAsRead(notificationsIDList);
+      dispatch(getNotifications());
       setMarkAllLoading(false);
     } catch (err) {
       setMarkAllLoading(false);

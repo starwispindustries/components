@@ -84,7 +84,7 @@ const NotificationCard = ({
 
           // overview attendance
           if (classroom_id && overview_attendance) {
-            return `${TIMELINE_URL}/attendance/overview?classroom_id=${classroom_id}`
+            return `${TIMELINE_URL}attendance/overview?classroom_id=${classroom_id}`
           }
 
           break;
@@ -211,8 +211,8 @@ const NotificationCard = ({
           const classroom_id = payload?.classroom_id;
           const item_id = payload?.item_id;
 
-          if (classroom_id) {
-            return `${LECTURES_URL}overview?classroom_id=${classroom_id}`
+          if (classroom_id && item_id) {
+            return `${LECTURES_URL}watch?classroom_id=${classroomId}&lecture_id=${item_id}`
           }
           return `${LECTURES_URL}`
         }
