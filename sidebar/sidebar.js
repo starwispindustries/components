@@ -144,7 +144,7 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant }) => {
 
 			<ProfilePopup>
 				<PopoverTrigger>
-					<Flex alignSelf={"baseline"} position={"absolute"} bottom={8}>
+					<Flex alignSelf={"baseline"} position={"absolute"} bottom={8} cursor={"pointer"}>
 						<UserAvatar filekey={profile?.profile_key} fullName={profile?.full_name == undefined ? username : profile?.full_name} borderRadius="15px" />
 					</Flex>
 				</PopoverTrigger>
