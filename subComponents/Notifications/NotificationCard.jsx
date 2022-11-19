@@ -48,7 +48,7 @@ const NotificationCard = ({
 
   const onClick = async () => {
     console.log('clickined')
-    const redirectionUrl = getRedirectionUrl();
+    const redirectionUrl = await getRedirectionUrl();
 
     if (redirectionUrl !== undefined) {
       window.open(redirectionUrl);
@@ -62,7 +62,7 @@ const NotificationCard = ({
     }
   };
 
-  const getRedirectionUrl = () => {
+  const getRedirectionUrl = async () => {
     if (classroomId == undefined && itemId == undefined) {
       return undefined;
     }
@@ -84,7 +84,7 @@ const NotificationCard = ({
 
           // overview attendance
           if (classroom_id && overview_attendance) {
-            return `${TIMELINE_URL}/attendance/overview?classroom_id=${classroom_id}`
+            return `${TIMELINE_URL}attendance/overview?classroom_id=${classroom_id}`
           }
 
           break;
@@ -132,9 +132,10 @@ const NotificationCard = ({
           // for classroom/materials 
           const classroom_id = payload?.classroom_id;
           const item_id = payload?.item_id;
+          const action_path = payload?.action_path;
 
           const material_id = item_id[0];
-          const material_type = item_id[0];
+          const material_type = action_path[0];
 
           if (classroom_id && material_id && material_type) {
             return `${CLASSROOM_URL}materials/preview?classroom_id=${classroomId}&material_id=${material_id}&type=${material_type}`;
@@ -159,7 +160,7 @@ const NotificationCard = ({
           const item_id = payload?.item_id;
 
           // global permissions
-          const { permissions } = apiCall(CLASSROOM_API_URL + 'permissions/self', {}, { 'Classroom-Id': classroom_id })
+          const { permissions } = await apiCall(CLASSROOM_API_URL + 'classroom/permissions/self', {}, { 'Classroom-Id': classroom_id })
 
           const poll_id = item_id[0]
 
@@ -210,8 +211,8 @@ const NotificationCard = ({
           const classroom_id = payload?.classroom_id;
           const item_id = payload?.item_id;
 
-          if (classroom_id) {
-            return `${LECTURES_URL}overview?classroom_id=${classroom_id}`
+          if (classroom_id && item_id) {
+            return `${LECTURES_URL}watch?classroom_id=${classroomId}&lecture_id=${item_id}`
           }
           return `${LECTURES_URL}`
         }

@@ -45,9 +45,10 @@ export const markAsRead = async (ids) => {
         if (res) {
             return res
         } else {
-            throw "error marking as read"
+            return false
         }
     } catch (err) {
         console.log(err)
+        return err
     }
 };

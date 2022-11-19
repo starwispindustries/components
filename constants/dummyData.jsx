@@ -1,10 +1,10 @@
 // export const dummyUser = {
-//     "token": "97ef552f-dbd1-41d4-82fa-671b8ac39425",
-//     "username": "rj_z",
-//     "when_accepted_terms": 991562412,
+//     "token": "aff6685a-2268-4bb9-8e4b-4ca4c0760071",
+//     "username": "rj_a",
+//     "when_accepted_terms": 1668265016,
 //     "organization_id": "101",
-//     "session_id": "c9506747-d550-4e0c-a70d-47204a9c0b77",
-//     "role_id": "6201106aaadbcc1442b4b15a",
-//     "theme": 1
+//     "session_id": "300b3835-d86b-44f0-92a9-9c7b0ec5cb36",
+//     "role_id": "62011052aadbcc1442b4b159",
+//     "theme": 0
 // }
 export const dummyUser = undefined;  
