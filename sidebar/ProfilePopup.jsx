@@ -43,7 +43,7 @@ const ProfilePopup = ({ children }) => {
 
   return (
     <>
-      <Popover isLazy onOpen={onOpen} onClose={onClose} isOpen={isOpen}>
+      <Popover isLazy onOpen={onOpen} onClose={onClose} isOpen={isOpen} closeOnBlur={false}>
         {children}
         <PopoverContent
           borderRadius={"20px"}
