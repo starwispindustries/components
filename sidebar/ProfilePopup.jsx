@@ -56,7 +56,7 @@ const ProfilePopup = ({ children }) => {
             <Label
               LabelIcon={Profile}
               title="View Profile"
-              url={`${MAIN_URL}i`}
+              url={`${MAIN_URL}i?tab=Account`}
             />
             <Label
               LabelIcon={Help}
