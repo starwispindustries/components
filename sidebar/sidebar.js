@@ -79,7 +79,7 @@ const CustomIcon = ({ children }) => {
 	);
 };
 
-const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant }) => {
+const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant, onClick = () => {} }) => {
 
 	return (
 		<Tooltip label={sidebar_variant == "sidebar" ? tooltip : ""} aria-label='A tooltip' placement='right' >
@@ -91,6 +91,7 @@ const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant
 					size="sm"
 					_focus={{ outline: "none" }}
 					justifyContent={sidebar_variant == "sidebar" ? "center" : "flex-start"}
+					onClick={onClick}
 				>
 					{children}
 				</Button>
@@ -99,7 +100,7 @@ const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant
 	);
 };
 
-const SidebarContent = ({ isDark, isDesktop, sidebar_variant }) => {
+const SidebarContent = ({ isDark, isDesktop, sidebar_variant, onClick = () => {} }) => {
 	const profile = useProfile()
 	const username = readCookie("username");
 
@@ -129,6 +130,7 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant }) => {
 								isDark={isDark}
 								sidebar_variant={sidebar_variant}
 								tooltip={item?.tooltip}
+								onClick={onClick}
 							>
 								<CustomIcon>
 									{item.icon}
