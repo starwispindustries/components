@@ -64,7 +64,7 @@ export const apiCall = async (url, options, headers) => {
         return resp.data;
       } else {
         // handle other 2xx codes
-        console.log(resp);
+
       }
     })
     .catch((err) => {

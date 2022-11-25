@@ -72,7 +72,6 @@ const NotificationsList = () => {
       setMarkAllLoading(false);
     } catch (err) {
       setMarkAllLoading(false);
-      console.log(err);
     }
   };
 
