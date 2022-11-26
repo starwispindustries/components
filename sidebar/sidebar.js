@@ -176,9 +176,11 @@ const Sidebar = ({ variant, isDark, isDesktop }) => {
 			zIndex={1}
 			position={"relative"}
 		>
-			<Center w="full" h="54px" mb="5">
-				<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
-			</Center>
+			<Link href={MAIN_URL}>
+				<Center w="full" h="54px" mb="5">
+					<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
+				</Center>
+			</Link>
 			<Divider borderColor={borderColor} />
 			<SidebarContent isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant} />
 		</Box>
