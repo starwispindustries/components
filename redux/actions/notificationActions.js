@@ -48,7 +48,6 @@ export const markAsRead = async (ids) => {
             return false
         }
     } catch (err) {
-        console.log(err)
         return err
     }
 };

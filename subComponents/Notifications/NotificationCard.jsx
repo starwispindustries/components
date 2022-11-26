@@ -47,7 +47,7 @@ const NotificationCard = ({
   bgColor = hexToRgbString(bgColor, colorMode == "light" ? 0.15 : 0.3);
 
   const onClick = async () => {
-    console.log('clickined')
+
     const redirectionUrl = await getRedirectionUrl();
 
     if (redirectionUrl !== undefined) {
