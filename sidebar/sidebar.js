@@ -22,6 +22,7 @@ import { Icon } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import EdvoraIcon from "../../src/icons/EdvoraIcon";
 
 import { CLASSROOM_URL, LECTURES_URL, MAIN_URL, TIMELINE_URL } from "../constants";
@@ -101,7 +102,7 @@ const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant
 };
 
 const SidebarContent = ({ isDark, isDesktop, sidebar_variant, onClick = () => {} }) => {
-	const profile = useProfile()
+	const profile = useSelector(state => state?.commonData?.profile);
 	const username = readCookie("username");
 
 	const origin =
@@ -111,7 +112,7 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant, onClick = () => {}
 
 	const color = useColorModeValue("primary.dark._000", "primary.light._000")
 	const selectedColor = useColorModeValue("primary.light._000", "primary.dark._000")
-
+	
 	return (
 		<VStack justifyContent={"space-between"} w={"full"}>
 			<VStack mt="29px" spacing="9px" w={"full"}>
@@ -166,40 +167,45 @@ const Sidebar = ({ variant, isDark, isDesktop }) => {
 	);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
-	return variant === "sidebar" ? (
-		<Box
-			p={5}
-			w="84px"
-			top={0}
-			h="100vh"
-			bg={bg}
-			zIndex={1}
-			position={"relative"}
-		>
-			<Center w="full" h="54px" mb="5">
-				<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
-			</Center>
-			<Divider borderColor={borderColor} />
-			<SidebarContent isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant} />
-		</Box>
-	) : (
-		<>
-			<MobileTopBar onOpen={onOpen} />
-			<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-				<DrawerOverlay>
-					<DrawerContent bg={bg}>
-						<DrawerCloseButton />
-						<DrawerHeader>
-							<EdvoraIcon width="140" height="25" />
-						</DrawerHeader>
-						<DrawerBody>
-							<SidebarContent onClick={onClose} isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant} />
-						</DrawerBody>
-					</DrawerContent>
-				</DrawerOverlay>
-			</Drawer>
-		</>
-	);
+	const profile = useProfile()
+
+	if (profile?.username) {
+		return variant === "sidebar" ? (
+			<Box
+				p={5}
+				w="84px"
+				top={0}
+				h="100vh"
+				bg={bg}
+				zIndex={1}
+				position={"relative"}
+			>
+				<Center w="full" h="54px" mb="5">
+					<Image src="/ed_logo.png" alt="" width="21px" height="21px" />
+				</Center>
+				<Divider borderColor={borderColor} />
+				<SidebarContent isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant} />
+			</Box>
+		) : (
+			<>
+				<MobileTopBar onOpen={onOpen} />
+				<Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+					<DrawerOverlay>
+						<DrawerContent bg={bg}>
+							<DrawerCloseButton />
+							<DrawerHeader>
+								<EdvoraIcon width="140" height="25" />
+							</DrawerHeader>
+							<DrawerBody>
+								<SidebarContent onClick={onClose} isDark={isDark} isDesktop={isDesktop} sidebar_variant={variant} />
+							</DrawerBody>
+						</DrawerContent>
+					</DrawerOverlay>
+				</Drawer>
+			</>
+		);
+	}
+	return null
 };
 
 export default Sidebar;
