@@ -2,32 +2,31 @@ import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig()
 
 //ENV VARIABLES ================================================================================================================
-export const CLASSROOM_API_URL =
-  publicRuntimeConfig.REACT_APP_CLASSROOM_API_URL ||
-  "https://classrooms.api.edvora.me/";
-export const TIMELINE_API_URL =
-  publicRuntimeConfig.REACT_APP_TIMELINE_API_URL || "https://timetable.api.edvora.me/";
+
+// API URL ==========================
+export const AUTH_API_URL = publicRuntimeConfig.REACT_APP_AUTH_API_URL || "https://auth.api.edvora.me/";
+export const MAIN_API_URL = publicRuntimeConfig.REACT_APP_MAIN_API_URL || "https://main.api.edvora.me/";
+export const CLASSROOM_API_URL = publicRuntimeConfig.REACT_APP_CLASSROOM_API_URL || "https://classrooms.api.edvora.me/";
+export const TIMELINE_API_URL = publicRuntimeConfig.REACT_APP_TIMELINE_API_URL || "https://timetable.api.edvora.me/";
 export const TIME_TABLE_API_URL = publicRuntimeConfig.REACT_APP_TIMELINE_API_URL || "https://timetable.api.edvora.me/";
-export const MAIN_API_URL =
-  publicRuntimeConfig.REACT_APP_MAIN_API_URL || "https://main.api.edvora.me/";
-export const AUTH_API_URL =
-  publicRuntimeConfig.REACT_APP_AUTH_API_URL || "https://auth.api.edvora.me/";
-export const FILE_API_URL =
-  publicRuntimeConfig.REACT_APP_FILE_API_URL || "https://files.api.edvora.me/";
+export const MEET_API_URL = publicRuntimeConfig.REACT_APP_MEET_API_URL || "https://in01.srv.edvora.me/";
+export const FILE_API_URL = publicRuntimeConfig.REACT_APP_FILE_API_URL || "https://files.api.edvora.me/";
 
-export const MAIN_URL =
-  publicRuntimeConfig.REACT_APP_MAIN_URL || "https://main.edvora.me/";
-export const CLASSROOM_URL =
-  publicRuntimeConfig.REACT_APP_CLASS_URL || "https://classrooms.edvora.me/";
-export const TIMELINE_URL =
-  publicRuntimeConfig.REACT_APP_TIMELINE_URL || "https://timeline.edvora.me/";
-export const LECTURES_URL =
-  publicRuntimeConfig.REACT_APP_LECTURES_URL || "https://lectures.edvora.me/";
+// Frontend URL ======================
+export const MAIN_URL = publicRuntimeConfig.REACT_APP_MAIN_URL || "https://main.edvora.me/";
+export const CLASSROOM_URL = publicRuntimeConfig.REACT_APP_CLASS_URL || "https://classrooms.edvora.me/";
+export const TIMELINE_URL = publicRuntimeConfig.REACT_APP_TIMELINE_URL || "https://timeline.edvora.me/";
+export const MEET_URL = publicRuntimeConfig.REACT_APP_MEET_URL || "https://meet.edvora.me/";
+export const LECTURES_URL = publicRuntimeConfig.REACT_APP_LECTURES_URL || "https://meet.edvora.me/";
 
-export const AGORA_APP_ID =
-  publicRuntimeConfig.REACT_APP_AGORA_APP_ID || "d7317e76e2374323823ada6aabcd8640";
+// Services URL ======================
+export const AGORA_APP_ID = publicRuntimeConfig.REACT_APP_AGORA_APP_ID || "d7317e76e2374323823ada6aabcd8640";
+export const GOOGLE_DRIVE_DEVELOPER_KEY = publicRuntimeConfig.REACT_APP_GOOGLE_DRIVE_DEVELOPER_KEY || "AIzaSyAMETjRdRRO8fcxO6nvmObhdl61G-KHJpk";
+export const GOOGLE_DRIVE_APP_ID = publicRuntimeConfig.REACT_APP_GOOGLE_DRIVE_APP_ID || "998183702316";
+export const DROPBOX_APP_ID = publicRuntimeConfig.REACT_APP_DROPBOX_APP_ID || "pftzxgpc43y0xq8";
+export const ONEDRIVE_APP_ID = publicRuntimeConfig.REACT_APP_ONEDRIVE_APP_ID || "b73b43d7-87fe-4a03-a0c7-fb21558be9da";
 
-  export const EDVORA_URL = publicRuntimeConfig.REACT_APP_EDVORA_URL || 'https://www.edvora.com';
+export const EDVORA_URL = publicRuntimeConfig.REACT_APP_EDVORA_URL || 'https://www.edvora.com';
 
 // ================================================================================================================================
 
