@@ -1,9 +1,9 @@
 // export const dummyUser = {
-//     "token": "8473dc9f-26f3-4462-91a5-bf978504dc5c",
-//     "username": "null",
-//     "when_accepted_terms": 1668608395,
+//     "token": "14ffb43e-cc6d-412b-9b03-5c6255249a14",
+//     "username": "rj_k",
+//     "when_accepted_terms": 991562412,
 //     "organization_id": "101",
-//     "session_id": "c1ec6d07-7ce0-4a22-84cf-d42e94c8dfeb",
+//     "session_id": "d8ae5c48-059d-45a2-bf67-c0144f15ca67",
 //     "role_id": "62011052aadbcc1442b4b159",
 //     "theme": 0
 // }
