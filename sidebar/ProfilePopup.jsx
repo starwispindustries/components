@@ -22,6 +22,8 @@ import useProfile from "../hooks/useProfile";
 import UserAvatar from "../subComponents/UserAvatar";
 import { logout } from "../helpers/authHelper";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { READ_STORAGE } from "../../src/constants";
 
 const ProfilePopup = ({ children }) => {
   const bg = useColorModeValue("primary.light._000", "primary.dark._000");
@@ -33,13 +35,15 @@ const ProfilePopup = ({ children }) => {
       const res = await logout();
       if (res?.success) {
         toast.success("Logged out!");
-        window.location = MAIN_URL+"l";
+        window.location = MAIN_URL + "l";
       }
     } catch (err) {
 
       toast.error("Error Logging out!");
     }
   };
+
+  const global_permissions = useSelector(state => state?.commonData?.profile?.global_permissions)
 
   return (
     <>
@@ -68,12 +72,14 @@ const ProfilePopup = ({ children }) => {
               url={`${MAIN_URL}i?tab=FAQs`} // Add proper redirection to FAQ
               onClick={onClose}
             />
-            <Label
-              LabelIcon={Storage}
-              title="Storage"
-              url={`${MAIN_URL}storage`}
-              onClick={onClose}
-            />
+            {global_permissions?.includes(READ_STORAGE) &&
+              <Label
+                LabelIcon={Storage}
+                title="Storage"
+                url={`${MAIN_URL}storage`}
+                onClick={onClose}
+              />
+            }
             <Label
               LabelIcon={Logout}
               title="Logout"
@@ -87,7 +93,7 @@ const ProfilePopup = ({ children }) => {
   );
 };
 
-const Label = ({ title, LabelIcon, color = null, url = "", onClick = () => {} }) => {
+const Label = ({ title, LabelIcon, color = null, url = "", onClick = () => { } }) => {
   const { colorMode } = useColorMode();
 
   const colorHex = color ?? (colorMode == "light" ? "#733D47" : "#BF9B9B");
