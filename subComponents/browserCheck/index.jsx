@@ -1,39 +1,15 @@
 import React from "react";
 import { CloseButton, Flex, Slide, Text, useColorModeValue, useDisclosure } from "@chakra-ui/react";
-import { useState } from "react";
-import { detect } from "detect-browser";
+import useBrowserValid from "../../hooks/useBrowserValid";
 
 const BrowserVersionCheckHeader = () => {
-    const browser = detect();
-    const [isBrowserValid, setIsBrowserValid] = useState(true);
+    const {isBrowserValid, browserVersion} = useBrowserValid();
     const bg = useColorModeValue("backgrounds.light.e100", "backgrounds.dark.e100");
     const hover = useColorModeValue("backgrounds.light.e200", "backgrounds.dark.e200");
 
     const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true });
 
-    const formatVersion = (version = "0.0") => {
-        return Number(version.split(".")[0]) || 0;
-    };
-
-    switch (browser && browser.version) {
-        case "chrome":
-            if (formatVersion(browser.version) < 96) setIsBrowserValid(false);
-            break;
-        case "firefox":
-            if (formatVersion(browser.version) < 79) setIsBrowserValid(false);
-            break;
-        case "edge":
-            if (formatVersion(browser.version) < 98) setIsBrowserValid(false);
-            break;
-        case "opera":
-            if (formatVersion(browser.version) < 83) setIsBrowserValid(false);
-            break;
-
-        default:
-            break;
-    }
-
-    return isBrowserValid ? (
+    return !isBrowserValid ? (
         <Slide direction="top" in={isOpen} style={{ zIndex: "9999" }}>
             <Flex
                 //position={"fixed"}
@@ -51,7 +27,7 @@ const BrowserVersionCheckHeader = () => {
                 borderBottomRadius={"6px"}
             >
                 <Text>
-                    Your browser version <Text as="b">{browser.version}</Text> does not meet the
+                    Your browser version <Text as="b">{browserVersion}</Text> does not meet the
                     supported minimum requirements! Please consider updating it to the latest
                     version.
                 </Text>
