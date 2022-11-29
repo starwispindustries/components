@@ -29,14 +29,14 @@ import { CLASSROOM_URL, LECTURES_URL, MAIN_URL, TIMELINE_URL } from "../constant
 import useProfile from "../hooks/useProfile";
 import UserAvatar from "../subComponents/UserAvatar";
 import { readCookie } from "../utils/apiCall";
-import { classroom, lectures, main, settings, studentInfo } from "./IconsList";
+import { classroom, information, lectures, main, settings } from "./IconsList";
 import MobileTopBar from "./MobileTopBar";
 import ProfilePopup from "./ProfilePopup";
 
 const ITEMS = [
 	{
 		id: 1,
-		title: "Home",
+		title: "Dashboard",
 		url: MAIN_URL,
 		icon: main,
 		tooltip: "Dashboard"
@@ -50,9 +50,9 @@ const ITEMS = [
 	},
 	{
 		id: 3,
-		title: "Student Info",
+		title: "Information",
 		url: TIMELINE_URL,
-		icon: studentInfo,
+		icon: information,
 		tooltip: "Timeline"
 	},
 	{
