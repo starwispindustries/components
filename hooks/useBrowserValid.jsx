@@ -10,7 +10,6 @@ const useBrowserValid = () => {
     const browser = detect();
     const [isBrowserValid, setIsBrowserValid] = useState(true);
     useEffect(() => {
-        console.log("checking browser" + browser.name);
         switch (true) {
             case browser.name === "chrome" && formatVersion(browser.version) < 96:
                 setIsBrowserValid(false);
