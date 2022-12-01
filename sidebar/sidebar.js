@@ -36,7 +36,7 @@ import ProfilePopup from "./ProfilePopup";
 const ITEMS = [
 	{
 		id: 1,
-		title: "Home",
+		title: "Dashboard",
 		url: MAIN_URL,
 		icon: main,
 		tooltip: "Dashboard"
@@ -50,7 +50,7 @@ const ITEMS = [
 	},
 	{
 		id: 3,
-		title: "Student Info",
+		title: "Timeline",
 		url: TIMELINE_URL,
 		icon: studentInfo,
 		tooltip: "Timeline"
