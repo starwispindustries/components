@@ -11,6 +11,7 @@ import {
 	Text,
 	Textarea,
 	useColorModeValue,
+	useToken,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { EButton } from "../eButton";
@@ -61,6 +62,11 @@ const EInput = ({
 		"text.light.h1_body",
 		"text.dark.h1_body"
 	);
+
+	const autoFillTextColor = useToken('colors', textColor)
+
+	const autoFillBg = useToken('colors', useColorModeValue("backgrounds.light.e000","backgrounds.dark.e000"))
+
 	const labelColor = useColorModeValue(
 		"text.light.h3_captions",
 		"text.dark.h3_captions"
@@ -286,6 +292,17 @@ const EInput = ({
 							fontWeight: "inherit",
 						}}
 						_disabled={{ borderColor: borderColor, pointerEvents: "none" }}
+						_autofill={{
+							boxShadow: `0 0 0 30px ${autoFillBg} inset !important`,
+							textFillColor: autoFillTextColor,
+							_focus: {
+								boxShadow: `0 0 0 30px ${autoFillBg} inset !important`,
+							},
+							_hover: {
+								boxShadow: `0 0 0 30px ${autoFillBg} inset !important`,
+							}
+						}}
+
 						autoComplete={autoComplete}
 						border={"1px solid"}
 						borderColor={focusBorderColor}
