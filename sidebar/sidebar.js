@@ -50,7 +50,7 @@ const ITEMS = [
 	},
 	{
 		id: 3,
-		title: "Information",
+		title: "Timeline",
 		url: TIMELINE_URL,
 		icon: information,
 		tooltip: "Timeline"
