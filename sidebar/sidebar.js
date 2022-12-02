@@ -29,9 +29,9 @@ import { CLASSROOM_URL, LECTURES_URL, MAIN_URL, TIMELINE_URL } from "../constant
 import useProfile from "../hooks/useProfile";
 import UserAvatar from "../subComponents/UserAvatar";
 import { readCookie } from "../utils/apiCall";
-import { classroom, lectures, main, settings, studentInfo } from "./IconsList";
+import { classroom, lectures, main, settings, timeline } from "./IconsList";
 import MobileTopBar from "./MobileTopBar";
-import ProfilePopup from "./ProfilePopup";
+import ProfilePopup, { LogoutLabel } from "./ProfilePopup";
 
 const ITEMS = [
 	{
@@ -52,7 +52,7 @@ const ITEMS = [
 		id: 3,
 		title: "Timeline",
 		url: TIMELINE_URL,
-		icon: studentInfo,
+		icon: timeline,
 		tooltip: "Timeline"
 	},
 	{
@@ -110,50 +110,65 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant, onClick = () => {}
 			? window.location.origin + "/"
 			: "";
 
-	const color = useColorModeValue("primary.dark._000", "primary.light._000")
+	const color = useColorModeValue("primary.light.200", "primary.dark.200")
 	const selectedColor = useColorModeValue("primary.light._000", "primary.dark._000")
 	
 	return (
-		<VStack justifyContent={"space-between"} w={"full"}>
-			<VStack mt="29px" spacing="9px" w={"full"}>
-				{
-					ITEMS.map(item => {
-						const pathname = typeof window != 'undefined' ? window.location.pathname : ''
-						const isActive = origin.includes(item.url) && pathname != "/i"
-						const isSettings = item?.homeSettings
-						const active = isSettings && pathname == "/i" ? isSettings : isActive
+        <VStack justifyContent={"space-between"} w={"full"}>
+            <VStack mt="29px" spacing="18px" w={"full"}>
+                {ITEMS.map((item) => {
+                    const pathname = typeof window != "undefined" ? window.location.pathname : "";
+                    const isActive = origin.includes(item.url) && pathname != "/i";
+                    const isSettings = item?.homeSettings;
+                    const active = isSettings && pathname == "/i" ? isSettings : isActive;
 
-						return (
-							<CustomButton
-								key={item.url + "-key"}
-								path={item.url}
-								active={active}
-								isDark={isDark}
-								sidebar_variant={sidebar_variant}
-								tooltip={item?.tooltip}
-								onClick={onClick}
-							>
-								<CustomIcon>
-									{item.icon}
-								</CustomIcon>
-								{!isDesktop && (
-									<Text ml={5} color={active ? selectedColor : color}>{item?.title}</Text>
-								)}
-							</CustomButton>
-						)
-					})
-				}
-			</VStack>
+                    return (
+                        <CustomButton
+                            key={item.url + "-key"}
+                            path={item.url}
+                            active={active}
+                            isDark={isDark}
+                            sidebar_variant={sidebar_variant}
+                            tooltip={item?.tooltip}
+                            onClick={onClick}
+                        >
+                            <CustomIcon>{item.icon}</CustomIcon>
+                            {!isDesktop && (
+                                <Text ml={5} size={"lg"} color={active ? selectedColor : color}>
+                                    {item?.title}
+                                </Text>
+                            )}
+                        </CustomButton>
+                    );
+                })}
+            </VStack>
 
-			<ProfilePopup>
-				<PopoverTrigger>
-					<Flex alignSelf={"baseline"} position={"absolute"} bottom={8} cursor={"pointer"}>
-						<UserAvatar filekey={profile?.profile_key} fullName={profile?.full_name == undefined ? username : profile?.full_name} borderRadius="15px" />
-					</Flex>
-				</PopoverTrigger>
-			</ProfilePopup>
-		</VStack>
-	);
+            {sidebar_variant === "sidebar" ? (
+                <ProfilePopup>
+                    <PopoverTrigger>
+                        <Flex
+                            alignSelf={"baseline"}
+                            position={"absolute"}
+                            bottom={8}
+                            cursor={"pointer"}
+                        >
+                            <UserAvatar
+                                filekey={profile?.profile_key}
+                                fullName={
+                                    profile?.full_name == undefined ? username : profile?.full_name
+                                }
+                                borderRadius="15px"
+                            />
+                        </Flex>
+                    </PopoverTrigger>
+                </ProfilePopup>
+            ) : (
+                <Flex alignSelf={"baseline"} position={"absolute"} left={"50%"} transform={"translate(-50%,0)"} bottom={8} cursor={"pointer"}>
+                    <LogoutLabel gap={"0"}/>
+                </Flex>
+            )}
+        </VStack>
+    );
 };
 
 const Sidebar = ({ variant, isDark, isDesktop }) => {

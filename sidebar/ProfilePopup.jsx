@@ -25,23 +25,23 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { READ_STORAGE } from "../../src/constants";
 
+const handleLogout = async () => {
+  try {
+    const res = await logout();
+    if (res?.success) {
+      toast.success("Logged out!");
+      window.location = MAIN_URL + "l";
+    }
+  } catch (err) {
+
+    toast.error("Error Logging out!");
+  }
+};
+
 const ProfilePopup = ({ children }) => {
   const bg = useColorModeValue("primary.light._000", "primary.dark._000");
 
   const { isOpen, onClose, onOpen } = useDisclosure()
-
-  const handleLogout = async () => {
-    try {
-      const res = await logout();
-      if (res?.success) {
-        toast.success("Logged out!");
-        window.location = MAIN_URL + "l";
-      }
-    } catch (err) {
-
-      toast.error("Error Logging out!");
-    }
-  };
 
   const global_permissions = useSelector(state => state?.commonData?.profile?.global_permissions)
 
@@ -80,12 +80,7 @@ const ProfilePopup = ({ children }) => {
                 onClick={onClose}
               />
             }
-            <Label
-              LabelIcon={Logout}
-              title="Logout"
-              color="red"
-              onClick={handleLogout}
-            />
+            <LogoutLabel />
           </VStack>
         </PopoverContent>
       </Popover>
@@ -93,7 +88,7 @@ const ProfilePopup = ({ children }) => {
   );
 };
 
-const Label = ({ title, LabelIcon, color = null, url = "", onClick = () => { } }) => {
+const Label = ({ title, LabelIcon, color = null, url = "", onClick = () => { } , ...props}) => {
   const { colorMode } = useColorMode();
 
   const colorHex = color ?? (colorMode == "light" ? "#733D47" : "#BF9B9B");
@@ -105,6 +100,7 @@ const Label = ({ title, LabelIcon, color = null, url = "", onClick = () => { } }
         gap="20px"
         cursor={"pointer"}
         onClick={() => onClick()}
+        {...props}
       >
         <Flex w="65px" justifyContent={"center"}>
           <LabelIcon color={colorHex} />
@@ -136,5 +132,15 @@ const PopoverHeader = () => {
     </HStack>
   );
 };
+
+export const LogoutLabel = ({...props}) => (
+  <Label
+    LabelIcon={Logout}
+    title="Logout"
+    color="red"
+    onClick={handleLogout}
+    {...props}
+  />
+)
 
 export default ProfilePopup;
