@@ -29,7 +29,7 @@ import { CLASSROOM_URL, LECTURES_URL, MAIN_URL, TIMELINE_URL } from "../constant
 import useProfile from "../hooks/useProfile";
 import UserAvatar from "../subComponents/UserAvatar";
 import { readCookie } from "../utils/apiCall";
-import { classroom, information, lectures, main, settings } from "./IconsList";
+import { classroom, lectures, main, settings, timeline } from "./IconsList";
 import MobileTopBar from "./MobileTopBar";
 import ProfilePopup, { LogoutLabel } from "./ProfilePopup";
 
@@ -52,7 +52,7 @@ const ITEMS = [
 		id: 3,
 		title: "Timeline",
 		url: TIMELINE_URL,
-		icon: information,
+		icon: timeline,
 		tooltip: "Timeline"
 	},
 	{
