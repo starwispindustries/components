@@ -17,7 +17,7 @@ export const MAIN_URL = publicRuntimeConfig.REACT_APP_MAIN_URL || "https://main.
 export const CLASSROOM_URL = publicRuntimeConfig.REACT_APP_CLASS_URL || "https://classrooms.edvora.me/";
 export const TIMELINE_URL = publicRuntimeConfig.REACT_APP_TIMELINE_URL || "https://timeline.edvora.me/";
 export const MEET_URL = publicRuntimeConfig.REACT_APP_MEET_URL || "https://meet.edvora.me/";
-export const LECTURES_URL = publicRuntimeConfig.REACT_APP_LECTURES_URL || "https://meet.edvora.me/";
+export const LECTURES_URL = publicRuntimeConfig.REACT_APP_LECTURES_URL || "https://lectures.edvora.me/";
 
 // Services URL ======================
 export const AGORA_APP_ID = publicRuntimeConfig.REACT_APP_AGORA_APP_ID || "d7317e76e2374323823ada6aabcd8640";
