@@ -110,7 +110,7 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant, onClick = () => {}
 			? window.location.origin + "/"
 			: "";
 
-	const color = useColorModeValue("primary.dark.200", "primary.light.200")
+	const color = useColorModeValue("primary.light.200", "primary.dark.200")
 	const selectedColor = useColorModeValue("primary.light._000", "primary.dark._000")
 	
 	return (
