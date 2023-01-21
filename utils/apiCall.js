@@ -54,7 +54,7 @@ export const apiCall = async (url, options, headers) => {
           organization_id: readCookie('organization_id'),
           session_id: readCookie('session_id'),
           role_id: readCookie('role_id'),
-        })
+        }).replace(/\\"/g, "")
       ),
     },
     ...options,
