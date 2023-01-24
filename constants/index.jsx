@@ -11,6 +11,7 @@ export const TIMELINE_API_URL = publicRuntimeConfig.REACT_APP_TIMELINE_API_URL |
 export const TIME_TABLE_API_URL = publicRuntimeConfig.REACT_APP_TIMELINE_API_URL || "https://timetable.api.edvora.me/";
 export const MEET_API_URL = publicRuntimeConfig.REACT_APP_MEET_API_URL || "https://in01.srv.edvora.me/";
 export const FILE_API_URL = publicRuntimeConfig.REACT_APP_FILE_API_URL || "https://files.api.edvora.me/";
+export const MARKETPLACE_API_URL = publicRuntimeConfig.REACT_APP_MARKETPLACE_API_URL || "https://marketplace.api.edvora.com/";
 
 // Frontend URL ======================
 export const MAIN_URL = publicRuntimeConfig.REACT_APP_MAIN_URL || "https://main.edvora.me/";
@@ -18,6 +19,7 @@ export const CLASSROOM_URL = publicRuntimeConfig.REACT_APP_CLASS_URL || "https:/
 export const TIMELINE_URL = publicRuntimeConfig.REACT_APP_TIMELINE_URL || "https://timeline.edvora.me/";
 export const MEET_URL = publicRuntimeConfig.REACT_APP_MEET_URL || "https://meet.edvora.me/";
 export const LECTURES_URL = publicRuntimeConfig.REACT_APP_LECTURES_URL || "https://lectures.edvora.me/";
+export const MARKETPLACE_URL = publicRuntimeConfig.REACT_APP_MAIN_URL || "https://marketplace.api.edvora.com/";
 
 // Services URL ======================
 export const AGORA_APP_ID = publicRuntimeConfig.REACT_APP_AGORA_APP_ID || "d7317e76e2374323823ada6aabcd8640";
