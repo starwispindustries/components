@@ -24,6 +24,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import EdvoraIcon from "../../src/icons/EdvoraIcon";
+import useBusinessModel from "../../src/lib/hooks/useBusinessModel";
 
 import { CLASSROOM_URL, LECTURES_URL, MAIN_URL, TIMELINE_URL } from "../constants";
 import useProfile from "../hooks/useProfile";
@@ -39,28 +40,32 @@ const ITEMS = [
 		title: "Dashboard",
 		url: MAIN_URL,
 		icon: main,
-		tooltip: "Dashboard"
+		tooltip: "Dashboard",
+		module: "main"
 	},
 	{
 		id: 2,
 		title: "Classroom",
 		url: CLASSROOM_URL,
 		icon: classroom,
-		tooltip: "Classrooms"
+		tooltip: "Classrooms",
+		module: "classrooms"
 	},
 	{
 		id: 3,
 		title: "Timeline",
 		url: TIMELINE_URL,
 		icon: timeline,
-		tooltip: "Timeline"
+		tooltip: "Timeline",
+		module: "timeline"
 	},
 	{
 		id: 4,
 		title: "Lectures",
 		url: LECTURES_URL,
 		icon: lectures,
-		tooltip: "Lectures"
+		tooltip: "Lectures",
+		module: "lectures"
 	},
 	{
 		id: 5,
@@ -69,6 +74,7 @@ const ITEMS = [
 		icon: settings,
 		homeSettings: true,
 		tooltip: "Settings",
+		module: "main"
 	},
 ]
 
@@ -80,7 +86,7 @@ const CustomIcon = ({ children }) => {
 	);
 };
 
-const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant, onClick = () => {} }) => {
+const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant, onClick = () => { } }) => {
 
 	return (
 		<Tooltip label={sidebar_variant == "sidebar" ? tooltip : ""} aria-label='A tooltip' placement='right' >
@@ -101,7 +107,7 @@ const CustomButton = ({ children, tooltip, path, active, isDark, sidebar_variant
 	);
 };
 
-const SidebarContent = ({ isDark, isDesktop, sidebar_variant, onClick = () => {} }) => {
+const SidebarContent = ({ isDark, isDesktop, sidebar_variant, onClick = () => { } }) => {
 	const profile = useSelector(state => state?.commonData?.profile);
 	const username = readCookie("username");
 
@@ -110,65 +116,69 @@ const SidebarContent = ({ isDark, isDesktop, sidebar_variant, onClick = () => {}
 			? window.location.origin + "/"
 			: "";
 
+	const { modules_included } = useBusinessModel();
+
 	const color = useColorModeValue("primary.light.200", "primary.dark.200")
 	const selectedColor = useColorModeValue("primary.light._000", "primary.dark._000")
-	
+
 	return (
-        <VStack justifyContent={"space-between"} w={"full"}>
-            <VStack mt="29px" spacing="18px" w={"full"}>
-                {ITEMS.map((item) => {
-                    const pathname = typeof window != "undefined" ? window.location.pathname : "";
-                    const isActive = origin.includes(item.url) && pathname != "/i";
-                    const isSettings = item?.homeSettings;
-                    const active = isSettings && pathname == "/i" ? isSettings : isActive;
+		<VStack justifyContent={"space-between"} w={"full"}>
+			<VStack mt="29px" spacing="18px" w={"full"}>
+				{ITEMS.map((item) => {
+					if (modules_included?.includes(item.module)) {
+						const pathname = typeof window != "undefined" ? window.location.pathname : "";
+						const isActive = origin.includes(item.url) && pathname != "/i";
+						const isSettings = item?.homeSettings;
+						const active = isSettings && pathname == "/i" ? isSettings : isActive;
 
-                    return (
-                        <CustomButton
-                            key={item.url + "-key"}
-                            path={item.url}
-                            active={active}
-                            isDark={isDark}
-                            sidebar_variant={sidebar_variant}
-                            tooltip={item?.tooltip}
-                            onClick={onClick}
-                        >
-                            <CustomIcon>{item.icon}</CustomIcon>
-                            {!isDesktop && (
-                                <Text ml={5} size={"lg"} color={active ? selectedColor : color}>
-                                    {item?.title}
-                                </Text>
-                            )}
-                        </CustomButton>
-                    );
-                })}
-            </VStack>
+						return (
+							<CustomButton
+								key={item.url + "-key"}
+								path={item.url}
+								active={active}
+								isDark={isDark}
+								sidebar_variant={sidebar_variant}
+								tooltip={item?.tooltip}
+								onClick={onClick}
+							>
+								<CustomIcon>{item.icon}</CustomIcon>
+								{!isDesktop && (
+									<Text ml={5} size={"lg"} color={active ? selectedColor : color}>
+										{item?.title}
+									</Text>
+								)}
+							</CustomButton>
+						);
+					}
+				})}
+			</VStack>
 
-            {sidebar_variant === "sidebar" ? (
-                <ProfilePopup>
-                    <PopoverTrigger>
-                        <Flex
-                            alignSelf={"baseline"}
-                            position={"absolute"}
-                            bottom={8}
-                            cursor={"pointer"}
-                        >
-                            <UserAvatar
-                                filekey={profile?.profile_key}
-                                fullName={
-                                    profile?.full_name == undefined ? username : profile?.full_name
-                                }
-                                borderRadius="15px"
-                            />
-                        </Flex>
-                    </PopoverTrigger>
-                </ProfilePopup>
-            ) : (
-                <Flex alignSelf={"baseline"} position={"absolute"} left={"50%"} transform={"translate(-50%,0)"} bottom={8} cursor={"pointer"}>
-                    <LogoutLabel gap={"0"}/>
-                </Flex>
-            )}
-        </VStack>
-    );
+			{sidebar_variant === "sidebar" ? (
+				<ProfilePopup>
+					<PopoverTrigger>
+						<Flex
+							alignSelf={"baseline"}
+							position={"absolute"}
+							bottom={8}
+							cursor={"pointer"}
+						>
+							<UserAvatar
+								filekey={profile?.profile_key}
+								fullName={
+									profile?.full_name == undefined ? username : profile?.full_name
+								}
+								borderRadius="15px"
+							/>
+						</Flex>
+					</PopoverTrigger>
+				</ProfilePopup>
+			) : (
+				<Flex alignSelf={"baseline"} position={"absolute"} left={"50%"} transform={"translate(-50%,0)"} bottom={8} cursor={"pointer"}>
+					<LogoutLabel gap={"0"} />
+				</Flex>
+			)}
+		</VStack>
+	);
 };
 
 const Sidebar = ({ variant, isDark, isDesktop }) => {
